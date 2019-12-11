@@ -294,3 +294,21 @@ export default {
 `storage.setItem(keyName, keyValue);`
 
 network 탭에서 Application 누르면 local storage에 나온다.
+
+### life cycle
+* created
+``` html
+<script>
+export default {    
+    created: function(){
+        console.log('created');
+    }  // instance 생성시 바로 불러지는 ..!!;
+}
+</script>
+```
+var obj = {};
+JSON.stringify();
+
+
+splice()
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
