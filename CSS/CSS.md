@@ -1,7 +1,9 @@
-## CSS
+# CSS
+> Cascading Style Sheet  
 
 참고 : https://caniuse.com/
-### CSS 
+
+## CSS 
 * style tag
     ```html
     <style> 
@@ -10,10 +12,25 @@
         }
     </style>
     ```
-* inline 속성 
+* inline 속성  
+`<tag style= "속성명: 속성값; 속성명2: 속성값2;">`
     ```html
     <h1 style="colr:red"> Hello World </h1>
 
+* .css file  
+`<link rel="stylesheet" href="css파일의 경로" />`
+```CSS
+selector{
+    속성명: 속성값;
+    속성명: 속성값;
+}
+```
+```CSS
+    * {
+        // 모든 태그에 적용.
+    }
+}
+```
 ### class, id
 tag, class, id 중에서 id를 가장 우선한다. 
 
@@ -44,16 +61,40 @@ tag, class, id 중에서 id를 가장 우선한다.
     <body id="id_name">
     </body>
     ```
+### 자식태그, 자손태그 
+```CSS
+//자식태그 
+#header-search > h1 {
+    //...
+}
+//자손태그 
+#header-search h1 {
+    //...
+}
+```
 
 ### box model
 * block level element
-
+전체를 차지한다. 
 * inline elment 
-
+width, heigth를 설정해줄 수 있다. 
     `display:inline`  
     `display:block` 와 같은 방식으로 기본 display 속성 바꿀 수 있다.
- 
+ * inline-block
+컨텐츠만 차지한다.
 
+
+### box-sizing
+* border-box 
+border까지 포함한 width, height. 즉, width : 100px 이면 컨텐트 영역+ padding + border 다 합친 것.
+
+* content-box
+content 영역만을 크기로 지정.  
+```CSS
+.class{
+    box-sizing: border-box | content-box;
+}
+```
 ### padding, margin
  margin   
  border   
@@ -100,4 +141,82 @@ tag, class, id 중에서 id를 가장 우선한다.
     </body>
     ```
     rem을 사용하게 되면 root 속성(일반적으로 html)을 기준으로 하여 단위가 정해진다.
+### 색상 
+* hex 표기법  
+구글에 hex color 쳐보자.
+* rgb 표기법  
+```CSS
+.class{
+    border: 1px solid rgb(숫자, 숫자 , 숫자);
+}
+```
+## Layout 잡기 
 
+1. 가로로 구역을 나눈다. `<div>` 태그로
+2. 이 후에 세로로 나눈다. 
+
+구역 자체가 가운데 정렬일때 
+```html
+<div>
+    <div style="margin: 0 auto"> </div>
+</div>
+```
+
+### 정렬 
+형제 태그끼리 height가 다르면 정렬이 달라진다. 이럴때는 형제 태그의 스타일에 
+vertical-align을 바꿔주면 된다. (vertical-align은 inline, inline-block 일때만 적용이 된다.)
+
+![정렬 이전](../img/beforAlign.png)
+```CSS
+    .header-search a{
+        text-decoration: none;
+        vertical-align: middle;
+    }
+    .header-search fieldset {
+        /* ... */
+        vertical-align: middle;
+    }
+
+```
+
+
+![정렬 이전](../img/afterAlign.png)
+
+
+### Position
+원래 있어야하는 위치에서 옮기는 것을 position이라고 한다. 기본 값은 `static` 이다.  
+```CSS 
+.header-search fieldset button{
+    /* ...  */
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+```
+![결과](../img/position.png)
+
+```CSS
+.header-search fieldset {
+    /* ... */
+    position: relative;    
+}
+```
+
+아래와 같이 부모 태그에 relative를 추가해주면 
+![결과](../img/relative.png)
+
+* relative 
+원래 위치에서 움직인다. 
+```CSS
+.class {
+    position: relative;
+    top : -10px;
+}
+```
+
+* absolute
+화면을 기준으로 위치를 옮겨간다. 
+position 속성이 `absolute`인 경우 컨테이닝 블록은 `position` 속성 값이 static이 아니고(`fixed`, `absolute`, `relative`,`sticky`) 가장 가까운 조상의 내부 여백 영역이다. 즉. 부모를 계속 찾아간다. static이 아닌 부분까지 찾아간다. 없으면 html까지 올라간다.  
+어딘가에 붙이고 싶으면 상위 태그에 position 속성을 고쳐준다. 위의 fieldset에 `position: relative`를 둔 것이 이 방법. 
+
+### 컨테이닝 블록 식별

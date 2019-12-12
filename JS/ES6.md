@@ -108,6 +108,95 @@ function f(){
 }
 ```
 ### Arrow Function
+ES5와 ES6 간단한 비교. 
+```javascript
+var sum = funtion(a, b){
+    return a+b;
+};
 
-### enhanced Object Literals
+var sum = (a, b)=>{
+    return a+b;
+}
+sum(10, 20);
+```
+사용 예시 
+```javascript
+//ES5
+var a = ["a", "b", "c"];
+arr.forEach(funtion(value){
+    console.log(value);
+});
+```
+arr.forEach((v)=>{
+    console.log(v);
+});
 
+
+### enhanced Object Literals - 향상된 객체 리터럴  
+```javascript
+var dictionary = {
+    words: 100,
+    // ES5
+    lookup: function(){
+        console.log("find words");
+    },
+    //ES6
+    lookup(){
+        console.log("find words");
+    }
+};
+```
+* 객체의 속석명과 값 명이 동일할 때 아래와 같이 축약 가능
+
+```javascript
+var figures = 10;
+var dictionary = {
+    //figures: figures
+    figures
+};
+```
+* 예시     
+   
+```html
+components:{
+// 'TodoHeader': TodoHeader,
+// 'TodoInput': TodoInput,
+// 'TodoList': TodoList,
+// 'TodoFooter': TodoFooter
+    TodoHeader,
+    TodoInput,
+    TodoList,
+    TodoFooter
+}
+```
+
+### Modules
+* 자바스크립트 모듈 로더 라이브러리 기능을 js 언어 자체에서 지원.   
+자바에서의 클래스나 패키지 같은 개념이라고 생각하면 될 듯. 
+* 호출되기 전까지는 코드 실행과 동작을 하지 않는 특징이 있음. 
+
+```javascript
+// libs/math.js
+export function sum(x, y){
+    return x+y;
+}
+export var pi = 3.14;
+//main.js
+import {sum} from 'libs/math.js'
+sum(1,2);
+```
+* `default` export
+한 개의 파일에서 하나밖에 export가 안된다. 일종의 encapsulation. 
+```javascript
+//util.js
+export default function (x){
+    return console.log(x);
+}
+// main.js
+import util from 'util.js';
+console.log(util);
+util('hi');
+//app.js 
+import log from 'util.js;
+console.log(log);
+log('hi;);
