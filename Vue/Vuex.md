@@ -30,4 +30,34 @@ Controller -> Model  <--> View 양방향
 
 ![flux](../img/Flux.png)
 
+## Vuex
+### 이벤트 버스로 해결?
+
+* 어디서 이벤트를 보냈는지 혹은 어디서 이벤트를 받았는지 알기 어려움.
+
+```javascript
+//Login.Vue
+eventBus.$emit('fetch`,loginInfo);
+//List.vue
+eventBus.$ont('display', data=> this.displayOnScreen(data));
+//Char.vue
+eventBus.$emit('refreshData', chartData);
+```
+컴포넌트 간 데이터 전달이 명시적이지 않음. 
+
+### Vuex로 해결할 수 있는 문제 
+1. MVC 패턴에서 발생하는 구조적 오류 
+2. 컴포넌트 간 데이터 전달 명시  
+3. 여러 개의 컴포넌트에서 같은 데이터를 업데이트 할 때 동기화 문제. 
+
+### VueX 컨셉 
+* State : 컴포넌트 간에 공유하는 데이터 `date()`
+* View : 데이터를 표시하는 화면 `template`
+* Action : 사용자의 입력에 따라 데이터를 변경하는 `methods`
+![vuex 컨셉](../img/concept.png)
+단방향 데이터 흐름 처리를 단순하게 도식화한 그림
+
+### Vuex 구조 
+컴포넌트 -> 비동기 로직 -> 동기 로직 -> 상태  
+![structure](../img/structure.png)
 

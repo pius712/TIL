@@ -1,5 +1,9 @@
 # CSS
-> Cascading Style Sheet  
+> Cascading Style Sheet 
+
+규칙  
+* 뒤에 나오는 것이 우선순위가 더 높다. 
+* important > inline style > id> class = 다른 attribute > tag element
 
 참고 : https://caniuse.com/
 
@@ -74,13 +78,13 @@ tag, class, id 중에서 id를 가장 우선한다.
 ```
 
 ### box model
-* block level element
+* block level element  
 전체를 차지한다. 
-* inline elment 
+* inline elment   
 width, heigth를 설정해줄 수 있다. 
     `display:inline`  
     `display:block` 와 같은 방식으로 기본 display 속성 바꿀 수 있다.
- * inline-block
+ * inline-block  
 컨텐츠만 차지한다.
 
 
@@ -141,6 +145,9 @@ content 영역만을 크기로 지정.
     </body>
     ```
     rem을 사용하게 되면 root 속성(일반적으로 html)을 기준으로 하여 단위가 정해진다.
+* %   
+컨테이닝 블록의 % 
+컨테이닝 블록 참조.  
 ### 색상 
 * hex 표기법  
 구글에 hex color 쳐보자.
@@ -219,4 +226,18 @@ vertical-align을 바꿔주면 된다. (vertical-align은 inline, inline-block �
 position 속성이 `absolute`인 경우 컨테이닝 블록은 `position` 속성 값이 static이 아니고(`fixed`, `absolute`, `relative`,`sticky`) 가장 가까운 조상의 내부 여백 영역이다. 즉. 부모를 계속 찾아간다. static이 아닌 부분까지 찾아간다. 없으면 html까지 올라간다.  
 어딘가에 붙이고 싶으면 상위 태그에 position 속성을 고쳐준다. 위의 fieldset에 `position: relative`를 둔 것이 이 방법. 
 
+* fixed 
+position 속성이 fixed인 경우, 컨테이닝 블록은 뷰포트나 페이지 영역.  
+뷰포트? 
+```CSS
+    position: fixed;
+/*    display: inline-block;
+    width: 100px;
+    height: 100px;
+    border 1px solid black;
+    border-radius: 50px; */
+```
 ### 컨테이닝 블록 식별
+
+
+### sudo class... 어떻게 정리하지;; 너무 많다 
