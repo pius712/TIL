@@ -40,4 +40,8 @@ private ip address를 가지고 있는 기기로 외부의 네트워크에 접�
 ## Port fowarding 
 
 
-## DHCP
+## DHCP (Dynamic Host Configuration Protocol)
+DHCP Server, DHCP Client  
+1. DHCP Client가 DHCP Server에게 MAC address를 알려준다. 
+2. DHCP Server가 DHCP Client에게 ip address를 대여.
+3. DHCP Client --OK--> DHCP Server 
