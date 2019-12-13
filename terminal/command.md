@@ -14,3 +14,6 @@
 
 * ifconfig - ip에 관련된 정보
 * ps - 현재 실행중인 프로세스 
+
+* `>` - echo 문자열 > 파일이름  
+ex) echo hello > README.MD

@@ -53,7 +53,7 @@ eventBus.$emit('refreshData', chartData);
 ### VueX 컨셉 
 * State : 컴포넌트 간에 공유하는 데이터 `date()`
 * View : 데이터를 표시하는 화면 `template`
-* Action : 사용자의 입력에 따라 데이터를 변경하는 `methods`
+* Action : 사용자의 입력에 따라 데이터를 변경하는 `methods`  
 ![vuex 컨셉](../img/concept.png)
 단방향 데이터 흐름 처리를 단순하게 도식화한 그림
 
