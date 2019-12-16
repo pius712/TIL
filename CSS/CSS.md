@@ -283,11 +283,3 @@ float 속성을 가진 엘리먼트는 페이지의 일반적인 흐름(`normal 
 ```CSS
 clear:left;
 ```
-
-## margin collapsing
-블록의 top 및 bottom 마진은 때로는 (결합되는 마진 중 크기가) 가장 큰 한 마진으로 결합(combine, 상쇄(collapsed))됩니다
-```HTML
-<div style="margin-bottom:20px;"></div>
-<div style="margin-top:20px;"></div>
-```
-이런 식으로 형제간에 마진이 상하로 겹치면 하나만 적용된다. 
