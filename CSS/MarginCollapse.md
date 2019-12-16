@@ -37,3 +37,22 @@ https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Box_Model/Mastering_margin_col
 
 
 ## Empty blocks
+`margin top`과 `margin bottom`을 구분하는 `border`, `padding`, `inline content`, `height`, or `min-height`가 없으면 두 개의 마진이 합쳐진다. 
+
+```HTML
+<div id="empty"></div>
+<div id="normal">normal</div>
+```
+```CSS
+#empty{
+    margin-top:50px;
+    margin-bottom: 100px;
+/*  border:1px solid tomato;*/
+}
+#normal{
+    background-color: powderblue;
+    margin-top:100px;
+}
+```
+
+위의 경우에는 빈 `div` 태그의 `margin top`과 `margin bottom`을 구분하는 것이 없기 때문에 더 큰 margin bottom으로 합쳐진다. 
