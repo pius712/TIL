@@ -241,3 +241,53 @@ position 속성이 fixed인 경우, 컨테이닝 블록은 뷰포트나 페이�
 
 
 ### sudo class... 어떻게 정리하지;; 너무 많다 
+
+### Block Formatting Content
+https://developer.mozilla.org/ko/docs/Web/Guide/CSS/Block_formatting_context
+* float
+* 인라인블록
+* overlow가 visible이 아닌 요소
+
+### float 
+하나의 엘리먼트를 자신의 컨테이너의 왼쪽이나 오른쪽에 위치하도록 한다. 이 때, text나 다른 inline 엘리먼트가 자신을 감쌀 수(wrap) 있다.  
+float 속성을 가진 엘리먼트는 페이지의 일반적인 흐름(`normal flow`)에서 벗어나지만, flow 자체에서 벗어나지는 않는다. 
+
+
+```html
+<div>
+    <div style="float: right; background-color:green">
+    둥둥둥둥
+    </div>
+    <div>가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사
+    </div>
+</div>
+```
+![float](../img/cssfloat.png)
+
+
+```html
+<div style="background-color:yellow">
+    <div style="float: right; background-color:green; height: 200px;">
+    둥둥둥둥
+    </div>
+    <div>
+    가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사가나다라마바사
+    </div>
+</div>
+```
+![float2](../img/cssfloat2.png)
+
+### clear
+엘리먼트가 선행 floating 엘리먼트 다음으로 쌓이는지 아니면 float 속성을 해제하고 그 아래로 내려가는지 지정할 수 있다. 
+![clear](../img/clear.png)
+```CSS
+clear:left;
+```
+
+## margin collapsing
+블록의 top 및 bottom 마진은 때로는 (결합되는 마진 중 크기가) 가장 큰 한 마진으로 결합(combine, 상쇄(collapsed))됩니다
+```HTML
+<div style="margin-bottom:20px;"></div>
+<div style="margin-top:20px;"></div>
+```
+이런 식으로 형제간에 마진이 상하로 겹치면 하나만 적용된다. 
