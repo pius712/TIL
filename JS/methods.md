@@ -1,0 +1,6 @@
+# 
+
+## Array
+* splice()
+
+* slice()

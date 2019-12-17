@@ -15,7 +15,7 @@
 ```HTML
     <button>
         <span><span>
-    <button>
+    </button>
 ```
 1. `display:block | inline-block`
 
@@ -47,6 +47,16 @@ span{
 ```
 아래와 같은 방식으로 `postion:absolute`를 주어도 해결할 수 있다. 이유는 잘 모르겠다... naver는 이런 방식을 채택하고 있다. 
 
+cf) `button` 태그는 자체적으로 padding을 가지고 있고, 내부가 가운데 정렬이기 때문에, button 태그 사이에 들어가는 엘리먼트는 정렬이 된다. 
+
+```HTML
+<button class="confirm-container">
+    <i class="fas fa-plus"></i>
+</button>
+```
+
+위 코드에 `<i>` 태그는 따로 CSS가 안들어간 상태인데도 아래와 같이 가운데 정렬이 되어있다. 
+![button](../img/button.png)
 ## Image Replacement
 웹 접근성을 준수하기 위한 필수 사항 중 하나는 이미지에 대체 텍스트를 제공하는 것입니다. 보통 HTML의  요소를 사용할 경우 alt 속성으로 대체 텍스트를 제공합니다. 특히 링크나 버튼 등의 컨트롤 요소에 이미지가 있고, 대체 텍스트를 제공해야 한다면 alt 속성이 가장 적합하다고 할 수 있습니다.
 
