@@ -1,5 +1,15 @@
 # Layout
 
+1. 우선적으로 가로로 레이아웃을 나눈다.  
+```HTML
+<header></header>
+<main></main>
+<footer></footer>
+```
+
+2. 이후 세로로 나눈다.
+
+
 ## Display
 
 HTML 엘리먼트는 모두 Display 속성을 갖는다. 대부분은 `inline` or `block`
@@ -55,7 +65,7 @@ HTML 엘리먼트는 모두 Display 속성을 갖는다. 대부분은 `inline` o
 포지션 속성은 엘리먼트가 페이지 어디에 위치할 것인지를 결정하는 속성. 기본 값은 `static`이다.
 * `static` : 기본 값.
 * `fixed` : 고정된 화면을 기준으로 위치가 지정된다. 페이지가 스크롤, 확대, 축소되어도 같은 위치에 존재한다. 구글의 검색창.  
-* `absolute` : 상위의 가장 근접한 엘리먼트를 기준으로 `fixed`와 같이 위치가 설정된다.  position 속성이 `absolute`인 경우 컨테이닝 블록은 `position` 속성 값이 static이 아니고(`fixed`, `absolute`, `relative`,`sticky`) 가장 가까운 조상의 내부 여백 영역이다. 즉. 부모를 계속 찾아간다. static이 아닌 부분까지 찾아간다. 없으면 html까지 올라간다.  
+* `absolute` : 상위의 가장 근접한 엘리먼트를 기준으로 `fixed`와 같이 위치가 설정된다.  position 속성이 `absolute`인 경우 컨테이닝 블록은 `position` 속성 값이 static이 아닌(`fixed`, `absolute`, `relative`,`sticky`) 가장 가까운 조상의 내부 여백 영역이다. 즉. 부모를 계속 찾아간다. static이 아닌 부분까지 찾아간다. 없으면 html까지 올라간다.  
 어딘가에 붙이고 싶으면 상위 태그에 position 속성을 고쳐준다.  
 * `relative` : 랠러티브(relative)는 top, right, left, bottom과 같은 속성을 주지 않으면 스태틱과 동일하게 위치합니다. 만약 top: -20px; left: 20px과 같은 속성을 주면 위로 20px 왼쪽으로 20px 떨어진 곳에 엘리먼트가 위치하게 됩니다. 이때 생성된 간격은 다음 엘리먼트의 위치에 영향을 주지 않습니다.
 

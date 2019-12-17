@@ -23,6 +23,9 @@
 
 * .css file  
 `<link rel="stylesheet" href="css파일의 경로" />`
+
+
+## Selector
 ```CSS
 selector{
     속성명: 속성값;
@@ -65,6 +68,7 @@ tag, class, id 중에서 id를 가장 우선한다.
     <body id="id_name">
     </body>
     ```
+
 ### 자식태그, 자손태그 
 ```CSS
 //자식태그 
@@ -77,7 +81,7 @@ tag, class, id 중에서 id를 가장 우선한다.
 }
 ```
 
-### box model
+## box model
 * block level element  
 전체를 차지한다. 
 * inline elment   
@@ -88,7 +92,7 @@ width, heigth를 설정해줄 수 있다.
 컨텐츠만 차지한다.
 
 
-### box-sizing
+## box-sizing
 * border-box 
 border까지 포함한 width, height. 즉, width : 100px 이면 컨텐트 영역+ padding + border 다 합친 것.
 
@@ -99,14 +103,14 @@ content 영역만을 크기로 지정.
     box-sizing: border-box | content-box;
 }
 ```
-### padding, margin
+## padding, margin
  margin   
  border   
  padding   
  content 
 
 
- ### 단위  
+## 단위  
 * rem
     * em
     ```html
