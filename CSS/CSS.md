@@ -104,6 +104,7 @@ content 영역만을 크기로 지정.
 }
 ```
 ## padding, margin
+
  margin   
  border   
  padding   
@@ -111,6 +112,7 @@ content 영역만을 크기로 지정.
 
 
 ## 단위  
+
 * rem
     * em
     ```html
@@ -152,15 +154,19 @@ content 영역만을 크기로 지정.
 * %   
 컨테이닝 블록의 % 
 컨테이닝 블록 참조.  
+
 ### 색상 
+
 * hex 표기법  
 구글에 hex color 쳐보자.
 * rgb 표기법  
+
 ```CSS
 .class{
     border: 1px solid rgb(숫자, 숫자 , 숫자);
 }
 ```
+
 ## Layout 잡기 
 
 1. 가로로 구역을 나눈다. `<div>` 태그로
@@ -168,6 +174,7 @@ content 영역만을 크기로 지정.
 
 구역 자체가 가운데 정렬일때 
 ```html
+
 <div>
     <div style="margin: 0 auto"> </div>
 </div>
@@ -178,6 +185,7 @@ content 영역만을 크기로 지정.
 vertical-align을 바꿔주면 된다. (vertical-align은 inline, inline-block 일때만 적용이 된다.)
 
 ![정렬 이전](../img/beforAlign.png)
+
 ```CSS
     .header-search a{
         text-decoration: none;
@@ -190,12 +198,13 @@ vertical-align을 바꿔주면 된다. (vertical-align은 inline, inline-block �
 
 ```
 
-
 ![정렬 이전](../img/afterAlign.png)
 
 
 ### Position
+
 원래 있어야하는 위치에서 옮기는 것을 position이라고 한다. 기본 값은 `static` 이다.  
+
 ```CSS 
 .header-search fieldset button{
     /* ...  */
@@ -218,6 +227,7 @@ vertical-align을 바꿔주면 된다. (vertical-align은 inline, inline-block �
 
 * relative 
 원래 위치에서 움직인다. 
+
 ```CSS
 .class {
     position: relative;
@@ -233,6 +243,7 @@ position 속성이 `absolute`인 경우 컨테이닝 블록은 `position` 속성
 * fixed 
 position 속성이 fixed인 경우, 컨테이닝 블록은 뷰포트나 페이지 영역.  
 뷰포트? 
+
 ```CSS
     position: fixed;
 /*    display: inline-block;
@@ -246,13 +257,10 @@ position 속성이 fixed인 경우, 컨테이닝 블록은 뷰포트나 페이�
 
 ### sudo class... 어떻게 정리하지;; 너무 많다 
 
-### Block Formatting Content
-https://developer.mozilla.org/ko/docs/Web/Guide/CSS/Block_formatting_context
-* float
-* 인라인블록
-* overlow가 visible이 아닌 요소
+
 
 ### float 
+
 하나의 엘리먼트를 자신의 컨테이너의 왼쪽이나 오른쪽에 위치하도록 한다. 이 때, text나 다른 inline 엘리먼트가 자신을 감쌀 수(wrap) 있다.  
 float 속성을 가진 엘리먼트는 페이지의 일반적인 흐름(`normal flow`)에서 벗어나지만, flow 자체에서 벗어나지는 않는다. 
 

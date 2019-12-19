@@ -91,6 +91,7 @@ HTML 엘리먼트는 모두 Display 속성을 갖는다. 대부분은 `inline` o
 
 * relative 
 원래 위치에서 움직인다. 
+
 ```CSS
 .class {
     position: relative;
