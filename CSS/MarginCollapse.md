@@ -1,11 +1,13 @@
 
 # margin collapsing
+
 https://www.opentutorials.org/course/2418/13464
 https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Box_Model/Mastering_margin_collapsing
 
 블록의 top 및 bottom 마진은 때로는 (결합되는 마진 중 크기가) 가장 큰 한 마진으로 결합(combine, 상쇄(collapsed))된다. 
 
 ## Adjacent siblings
+
 ```HTML
 <div style="margin-bottom:20px;"></div>
 <div style="margin-top:20px;"></div>
@@ -15,7 +17,8 @@ https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Box_Model/Mastering_margin_col
 
 ## No content separating parent and descendants  
 
-자식 태그의 `margin top`과 부모 태그의 `margin top`을 분리하는 `border`, `padding`, `inline content` 등이 없을 경우에는 마진 겹침 현상이 일어난다. 'margin bottom`의 경우도 마찬가지이다. 겹쳐진 마진(descendants tag)가 부모 태그의 마진 값 보다 커지면 부모 태그를 넘어간다. 
+자식 태그의 `margin top`과 부모 태그의 `margin top`을 분리하는 `border`, `padding`, `inline content` 등이 없을 경우에는 마진 겹침 현상이 일어난다. 'margin bottom`의 경우도 마찬가지이다. 겹쳐진 마진(descendants tag)가 부모 태그의 마진 값 보다 커지면 부모 태그를 넘어간다.
+
 ```HTML
  <div id="parent">        
     <div id="child">
@@ -23,6 +26,7 @@ https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Box_Model/Mastering_margin_col
     </div>
 </div>
 ```
+
 ```CSS
 #parent{
   /*border:1px solid tomato;*/
@@ -43,6 +47,7 @@ https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Box_Model/Mastering_margin_col
 <div id="empty"></div>
 <div id="normal">normal</div>
 ```
+
 ```CSS
 #empty{
     margin-top:50px;

@@ -10,6 +10,7 @@
     background: url('') 0px 0px no-repeat;
 }
 ```
+
 ## Button 안에 이미지 넣기 
 
 ```HTML
@@ -17,6 +18,7 @@
         <span><span>
     </button>
 ```
+
 1. `display:block | inline-block`
 
 이 경우 `span` 태그는 `inline`태그라서 안에 `background-imgage`를 넣어도 크기가 0*0이다. 그렇기 때문에 이를 해결하기 위해서는 `span` 태그의 display 속성에 `display:block | inline-block`을 주면 해결 할 수 있다. 

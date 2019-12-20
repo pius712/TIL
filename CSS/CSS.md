@@ -8,68 +8,84 @@
 참고 : https://caniuse.com/
 
 ## CSS 
+
 * style tag
-    ```html
-    <style> 
-        a{ // selector
-            color: black;  // Property : Value; 
-        }
-    </style>
-    ```
+
+```html
+<style> 
+    a{ // selector
+        color: black;  // Property : Value; 
+    }
+</style>
+```
+
 * inline 속성  
 `<tag style= "속성명: 속성값; 속성명2: 속성값2;">`
-    ```html
-    <h1 style="colr:red"> Hello World </h1>
+
+```html
+<h1 style="colr:red"> Hello World </h1>
+```
 
 * .css file  
 `<link rel="stylesheet" href="css파일의 경로" />`
 
 
 ## Selector
+
 ```CSS
 selector{
     속성명: 속성값;
     속성명: 속성값;
 }
 ```
+
 ```CSS
     * {
         // 모든 태그에 적용.
     }
 }
 ```
+
 ### class, id
+
 tag, class, id 중에서 id를 가장 우선한다. 
 
 * class
-    ```html
-    <style>
-        .class_name{
-            color: black;
-        }
-    </style>
-    <body>
-        <div class="class_name"></div>
-    </body>
-    ```
-    - 축약
-    ``` html
-        .class_a, .class_b {
 
-        } 
-    ```
-* id 
-    ```html
-    <style>
-        #id_name{
-            color: black;
-        }
-    </style>
-    <body id="id_name">
-    </body>
-    ```
+```CSS
+.class_name{
+    color: black;
+}
+```
+
+``` HTML
+<body>
+    <div class="class_name"></div>
+</body>
+```
+
+* 축약
+
+``` CSS
+.class_a, .class_b {
+    color: black;
+} 
+```
+
+* id
+
+```html
+<style>
+    #id_name{
+        color: black;
+    }
+</style>
+<body id="id_name">
+</body>
+```
 
 ### 자식태그, 자손태그 
+
 ```CSS
 //자식태그 
 #header-search > h1 {
@@ -82,39 +98,44 @@ tag, class, id 중에서 id를 가장 우선한다.
 ```
 
 ## box model
+
 * block level element  
-전체를 차지한다. 
-* inline elment   
+전체를 차지한다.  
+* inline elment  
 width, heigth를 설정해줄 수 있다. 
     `display:inline`  
     `display:block` 와 같은 방식으로 기본 display 속성 바꿀 수 있다.
- * inline-block  
+* inline-block  
 컨텐츠만 차지한다.
 
 
 ## box-sizing
+
 * border-box 
 border까지 포함한 width, height. 즉, width : 100px 이면 컨텐트 영역+ padding + border 다 합친 것.
 
 * content-box
+
 content 영역만을 크기로 지정.  
+
 ```CSS
 .class{
     box-sizing: border-box | content-box;
 }
 ```
+
 ## padding, margin
 
- margin   
- border   
- padding   
- content 
-
+ margin  
+ border  
+ padding  
+ content  
 
 ## 단위  
 
 * rem
-    * em
+  * em
+
     ```html
     <style>
         body{
@@ -131,9 +152,10 @@ content 영역만을 크기로 지정.
         
     </body>
     ```
+
     `em ` 의 단위를 사용히게 되면 부모의 폰트 사이즈를 계속 상속을 받아서 하위로 내려갈수록 단위가 커지게 된다. 
-    
-    - rem 
+  * rem 
+
     ```html
     <style>
         html{
@@ -145,7 +167,7 @@ content 영역만을 크기로 지정.
     </style>
     <body>
         <div class="test"> Hello  <!-- 10 * 1.4 px -->
-        <div class="test"> Hello </div>    
+        <div class="test"> Hello </div> 
         </div> <!-- 10 * 1.4 px -->
         
     </body>
@@ -172,7 +194,8 @@ content 영역만을 크기로 지정.
 1. 가로로 구역을 나눈다. `<div>` 태그로
 2. 이 후에 세로로 나눈다. 
 
-구역 자체가 가운데 정렬일때 
+구역 자체가 가운데 정렬일때
+
 ```html
 
 <div>
@@ -181,6 +204,7 @@ content 영역만을 크기로 지정.
 ```
 
 ### 정렬 
+
 형제 태그끼리 height가 다르면 정렬이 달라진다. 이럴때는 형제 태그의 스타일에 
 vertical-align을 바꿔주면 된다. (vertical-align은 inline, inline-block 일때만 적용이 된다.)
 

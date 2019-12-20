@@ -80,8 +80,10 @@ p {
 [참고: mdn](https://developer.mozilla.org/ko/docs/Web/Guide/CSS/Block_formatting_context)
 
 * float
-* 인라인블록
+* inline-block
 * overflow가 visible이 아닌 요소
+
+A block formatting context contains everything inside of the element creating it.
 
 블록 서식 문맥이 적용되면 기존의 흐름에서 벗어난 다른 차원이 열리는 효과를 가져온다.
 
@@ -93,4 +95,4 @@ p {
 
 ## Solution
 
-처음의 문제를 해결하기 위해서는 `container`의 속성에 `overflow:auto`를 추가해주면 된다. 이유는 찾아봐도 잘 모르겠다..
+처음의 문제를 해결하기 위해서는 `container`의 속성에 `overflow:auto`를 추가해주면 된다. 그렇게 하면 `container`가 BCF를 만들고 BCF의 특성상 BCF를 생성한 엘리먼트 내부의 모든 것을 감싸기 때문에 하위의 `div`들 (float이 적용된)을 포함할 수 있게 되는 것이다. 
