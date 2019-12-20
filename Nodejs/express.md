@@ -1,0 +1,181 @@
+# Express
+
+
+web framework. 
+
+* 어플리케이션
+* 미들웨어
+* 라우팅
+* 요청객체
+* 응답객체
+
+___
+
+## 어플리케이션
+
+### 익스프레스 인스턴스를 어플리케이션이라고 한다. 
+
+```javascript
+const express = require('express');
+const app = express();
+```
+
+
+### 서버를 요청 대기 상태로 만들 수 있다.
+
+```javascript
+app.listen(3000, function(){
+    console.log('server is running');
+});
+```
+
+___
+
+## 미들웨어 
+
+서버에 필요한 기능인 미들웨어를 어플리케이션에 추가한다.
+
+### 미들 웨어는 함수들의 연속이다 & 직접 만들기  
+
+아래와 같이 추가하고,  
+`curl -X GET 'localhost:3000/'`으로 서버에 요청을 보낸다.  
+
+```javascript
+function logger(req, res, next){
+    console.log('i am logger')
+    next(); // next 함수 호출.
+}
+function logger2(req,res,next){
+    console.log('i am logger2');
+    next();
+}
+app.use(logger); 
+app.use(logger2); 
+```
+
+```bash
+server is running
+i am logger
+i am logger2
+```
+
+만약에 처음 logger 함수의 next()를 호출하지 않으면 그 아래로 내려가지 않는다. 그리고  `curl -X GET 'localhost:3000/'`로 서버에 요청을 보내도 아무런 값을 받지 못한다. 
+
+
+### 써드파티 미들웨어
+
+`morgan`
+
+아래와 같이 로그가 찍히는게 `morgan`가 하는 일. 
+
+```bash
+GET / 404 2.643 ms - 139  
+```
+
+___
+
+**note**
+
+*왜 why?*
+
+logger는 `app.use(logger);`이고 morgan은 `app.use(morgan('dev'));` 이런 식으로 사용을 할까??  
+--> 아래와 같이 함수를 return하는 미들웨어를 만들 수 있다. 즉, `morgan`의 경우에는 `morgan()` 함수 호출을 하고 인자에 따라서 기능이 다른 함수를 리턴해주는다는 것을 알 수 있다. 
+
+```javascript
+function logger(req, res, next){
+    console.log('i am logger')
+    next(); // next 함수 호출.
+}
+
+function logger2(input){
+    // console.log('i am logger2');
+    // next();
+    console.log(input)
+    return logger;
+}
+app.use(logger2('hello'));
+```
+
+___
+
+### 에러 미들웨어
+
+에러 미들웨어는 일반 미들웨어와 달리 매개변수를 4개를 가지게 된다. 첫번째 인자로는 err를 받게 된다. 
+
+```javascript
+function errorMiddleWare(err,req,res,next){
+    console.log(err.message);
+    console.log('?');
+    // 에러를 처리하거나... 
+    next();
+}
+```
+
+미들웨어 중간에 error가 발생하면 중간의 미들웨어를 거치지 않고 바로 에러 미들웨어로 들어가서 처리된다. 
+
+```javascript
+function logger(req, res, next){
+    console.log('i am logger')
+    next(new Error('error occured')); // next 함수 호출.
+}
+
+function logger2(req,res,next){
+    console.log('i am logger2');
+    next();
+}
+function errorMiddleWare(err,req,res,next){
+    console.log(err.message);
+    console.log('?');
+    // 에러를 처리하거나... 
+    next();
+}
+app.use(logger);
+app.use(logger2);
+app.use(morgan('dev'));
+app.use(errorMiddleWare);
+```
+
+*결과*
+
+```bash
+server is running
+i am logger
+error occured
+``` 
+
+___
+
+## 라우팅 
+
+* 요청 url에 대해 적절한 핸들러 함수로 연결해 주는 기능을 라우팅이라고 부른다.  
+* 어플리케이션의 get(), post() 메소드로 구현할 수 있다.  
+* 라우팅을 위한 전용 Router 클래스를 사용할 수도 있다. 
+
+```javascript
+const express = require('express')
+const app = express()
+const port = 3000
+
+app.get('/', (req, res) => res.send('Hello World!'))
+
+app.listen(port, () => console.log(`Example app listening on port ${port}!`))
+```
+
+여기 app.get() 함수의 콜백함수에 있는 `req`, `res`는 http 모듈의 request, response를 wrapping 한 객체이다. 
+ 
+
+## 요청 객체와 응답 객체 
+
+* 클라이언트 요청 정보를 담은 객체를 요청(Request)객체라고 한다.
+* express의 요청 객체는 http 모듈의 request 객체를 래핑한 것이다.
+* req.params(), req.query(), req.body(), req.json() 메소드를 주로 사용한다. 
+
+```javascript
+const http = require('http');
+const server = http.createServer((req, res) => {
+}); 
+```
+
+위에서 createSever() 함수의 인자 `req` `res`는 객체이다. 
+
+

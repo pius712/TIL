@@ -77,3 +77,135 @@ eventBus.$emit('refreshData', chartData);
 
 ![structure](../img/structure.png)
 
+___
+
+설치 & 설정
+npm i vuex --save 
+`project/src/store/store.js` 생성
+
+```javascript
+import Vue from 'vue'
+import Vuex from 'vuex'
+
+Vue.use(Vuex); 
+// vue plugin 기능 전역으로 특정 기능을 추가하고 싶을때 (global functionality)
+
+// Todo.vue 라는 컴포넌트에서 
+// this.$store 로 접근이 가능하다?!
+
+export const store = new Vuex.Store({
+    // 이 것을 모듈로 만들었기 때문에, 외부에서 import 하면 사용할 수 있다.
+});
+```
+
+```javascript
+import Vue from 'vue';
+import App from './App.vue';
+import { store } from './store/store.js';
+
+Vue.config.productionTip = false
+
+new Vue({
+  store,
+  render: h => h(App),
+}).$mount('#app')
+```
+
+기술 요소  
+state : 여러 컴포넌트에 공유되는 `data`
+getters : 연산된 state 값을 접근하는 속성 `computed`
+mutations : state 값을 변경하는 이벤트 로직. 메서드`methods`
+actions : 비동기 처리 로직을 선언하는 메서드 `aysnc methdos`
+
+state란? 
+
+* 여러 컴포넌트 간에 공유할 데이터 - 상태
+
+```javascript
+// Vue
+data:{
+    message: 'Hello vue.js'
+}
+// Vuex
+state:{
+    message: 'hello vue.js'
+}
+```
+
+```HTML
+
+<!-- Vue -->
+<p> {{ message }} </p>
+
+<!-- Vuex-->
+<p> this.$store.state.message </p>
+```  
+
+getters란? 
+
+* state 값을 접근하는 속성이자 `computed()` 처럼 미리 연산된 값을 접근하는 속성
+
+```javascript
+
+state:{
+    num:10
+},
+getters:{
+    getNumber(state){
+        return state.num;
+    },
+    doubleNumber(state){
+        return state.num*2;
+    }
+}
+```
+
+```HTML
+<p> this.$store.getters.getNumber </p>
+<p> this.$store.getters.doubleNumber</p>
+
+```
+
+mutations란?
+
+* state의 값을 변경할 수 있는 유일한 방법이자 메서드
+* 뮤테이션은 `commit()`으로 동작시킨다. 
+
+```javascript
+//store.js
+state:{ num: 10},
+mutationsL{
+    printNumbers(state){
+        return state.num
+    },
+    sumNumbers(state,anotherNum){
+        return state.num + anotherNum;
+    }
+}
+//App.vue
+this.$store.commit('printNunmbers');
+this.$store.commit('sumNumbers',20);
+```
+
+mutations의 commit() 형식
+
+* state를 변경하기 위해 mutations를 동작시킬 때 인자(payload)를 전달할 수 있음. 
+
+```javascript
+// store.js
+state: {
+    storeNum:10
+},
+mutations:{
+    modifyState(state, payload){
+        console.log(payload.str);
+        return state.storeNum += payload.num;
+    }
+}
+// App.vue
+this.$store.commit('modifystate',{
+    str: 'passed from payload',
+    num: 20
+});
+
+``` 

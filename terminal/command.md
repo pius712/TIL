@@ -23,3 +23,6 @@ options
 ex) echo hello > README.MD
 
 * command + shift + '.' - 숨김 파일 보기/끄기 
+
+* curl
+다양한 프로토콜로 데이터를 전송하는

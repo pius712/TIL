@@ -1,0 +1,51 @@
+# NodeJS
+
+## 특징 
+
+* 브라우저 밖에서 자바스크립트 코드를 실행할 수 있다.
+* 크롬에서 사용하는 V8 엔진을 사용한다.
+* 이벤트 기반의 비동기 I/O 프레임워크이다. 
+* 모듈 시스템이 있다. 
+
+### 이벤트 기반의 비동기 I/O
+
+Event Loop가 `싱글 스레드`이다.  
+Non-blocking Worker에 무거운 작업을 보냈다가 처리를 완료하면 다시 이벤트 루프로 보내준다. 
+[하이](www.naver.com)
+
+### 모듈 시스템
+
+* 기본 모듈
+
+```javascript 
+const http = require('http');
+
+http.createServer();
+```
+
+* 써드 파티 모듈 
+
+* 사용자 정의 모듈 
+
+파일에서 `module.exports = { }` 해주면 다른 파일에서 `import 이름 from '경로'` 로 사용 가능하다. 
+```javascript
+// math.js
+function sum (a, b){
+    return a + b;
+}
+
+module.exports = {
+    sum : sum
+}
+// index.js
+const math = require('./math.js');
+
+const result = math.sum(1, 2);
+console.log(result);
+```
+
+### 비동기  
+
+노드는 기본적으로 비동기로 동작함
+
+* readFile() vs readFileSync() 
