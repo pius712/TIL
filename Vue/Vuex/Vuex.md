@@ -1,5 +1,22 @@
 # Vuex
 
+* what is vuex?
+* getting started
+* core concept
+
+## What is Vuex?
+
+Vuex is a state management pattern + library for Vue.js applications. 
+
+multiple components that share a common state:
+
+Multiple views may depend on the same piece of state.
+Actions from different views may need to mutate the same piece of state.
+
+So why don't we extract the shared state out of the components, and manage it in a global singleton? With this, our component tree becomes a big "view", and any component can access the state or trigger actions, no matter where they are in the tree!
+
+By defining and separating the concepts involved in state management and enforcing rules that maintain independence between views and states, we give our code more structure and maintainability.
+
 * 복잡한 애플리케이션의 컴포넌트들을 효율적으로 관리하는 라이브러리  
 * Vuex 라이브러리의 등장 배경인 Flux 패턴  
 * Vuex 라이브러리의 주요 속성인 state, getters, mutations, actions 학습  
@@ -27,13 +44,13 @@ Controller -> Model  <--> View 양방향
 * 기능 추가 및 변경에 따라 생기는 문제점을 예측할 수가 없음 
 * 앱이 복잡해지면서 생기는 업데이트 루프  
 
-![MVC 문제점](../img/MVC.png)
+![MVC 문제점](../../img/MVC.png)
 
 ### Flux 패턴의 단방향 데이터 흐름 
 
 * 데이터의 흐름이 여러 갈래로 나뉘지 않고 단방향으로만 처리  
 
-![flux](../img/Flux.png)
+![flux](../../img/Flux.png)
 
 ___
 
@@ -68,16 +85,18 @@ eventBus.$emit('refreshData', chartData);
 * View : 데이터를 표시하는 화면 `template`
 * Action : 사용자의 입력에 따라 데이터를 변경하는 `methods`  
 
-![vuex 컨셉](../img/concept.png)
+![vuex 컨셉](../../img/concept.png)
 단방향 데이터 흐름 처리를 단순하게 도식화한 그림
 
 ### Vuex 구조 
 
 컴포넌트 -> 비동기 로직 -> 동기 로직 -> 상태  
 
-![structure](../img/structure.png)
+![structure](../../img/structure.png)
 
 ___
+
+## Getting Started
 
 설치 & 설정
 npm i vuex --save 
@@ -111,115 +130,90 @@ new Vue({
 }).$mount('#app')
 ```
 
-기술 요소  
-state : 여러 컴포넌트에 공유되는 `data`
-getters : 연산된 state 값을 접근하는 속성 `computed`
-mutations : state 값을 변경하는 이벤트 로직. 메서드`methods`
-actions : 비동기 처리 로직을 선언하는 메서드 `aysnc methdos`
+___
 
-state란? 
+## Core concept 기술 요소
 
-* 여러 컴포넌트 간에 공유할 데이터 - 상태
+* state : 여러 컴포넌트에 공유되는 `data`
+* getters : 연산된 state 값을 접근하는 속성 `computed`
+* mutations : state 값을 변경하는 이벤트 로직. 메서드 `methods`
+* actions : 비동기 처리 로직을 선언하는 메서드 `aysnc methdos`
 
-```javascript
-// Vue
-data:{
-    message: 'Hello vue.js'
-}
-// Vuex
-state:{
-    message: 'hello vue.js'
-}
-```
 
-```HTML
+actions?  
 
-<!-- Vue -->
-<p> {{ message }} </p>
-
-<!-- Vuex-->
-<p> this.$store.state.message </p>
-```  
-
-getters란? 
-
-* state 값을 접근하는 속성이자 `computed()` 처럼 미리 연산된 값을 접근하는 속성
-
-```javascript
-
-state:{
-    num:10
-},
-getters:{
-    getNumber(state){
-        return state.num;
-    },
-    doubleNumber(state){
-        return state.num*2;
-    }
-}
-```
-
-```HTML
-<p> this.$store.getters.getNumber </p>
-<p> this.$store.getters.doubleNumber</p>
-
-```
-
-mutations란?
-
-* state의 값을 변경할 수 있는 유일한 방법이자 메서드
-* 뮤테이션은 `commit()`으로 동작시킨다. 
-
-```javascript
-//store.js
-state:{ num: 10},
-mutationsL{
-    printNumbers(state){
-        return state.num
-    },
-    sumNumbers(state,anotherNum){
-        return state.num + anotherNum;
-    }
-}
-//App.vue
-this.$store.commit('printNunmbers');
-this.$store.commit('sumNumbers',20);
-```
-
-mutations의 commit() 형식
-
-* state를 변경하기 위해 mutations를 동작시킬 때 인자(payload)를 전달할 수 있음. (-> payload는 임의의 관행적인 명이고, 객체이다.)
+* 비동기 처리 로직을 선언하는 메서드. 비동기 로직을 담당하는 mutations
+* 데이터 요청, Promise, ES6 async와 같은 비동기 처리는 모두 actions에 
+선언.  
 
 ```javascript
 // store.js
-state: {
-    storeNum:10
+state:{
+    num:10
 },
 mutations:{
-    modifyState(state, payload){
-        console.log(payload.str);
-        return state.storeNum += payload.num;
+    dooubleNumber(state){
+        state.num * 2;
+    } // 3rd
+},
+actions:{
+    delayDoubleNumber(context){ // context로 store의 메서드와 속성 접근 
+        context.commit('doubleNumber');
+    } // 2nd
+}
+
+// App.vue
+this.$store.dispatch('delayDoubleNumber');  // 1st
+```
+ 
+ 비동기 코드 example1
+
+ ```javascript
+// store.js
+mutations:{
+    addCounter(state){
+        state.counter++
+    },
+},
+actions:{
+    delayedAddCounter(context){
+        setTimeout(()=> context.commit('addCounter), 2000);
+    }
+}
+
+// App.vue
+methods:{
+    incrementCounter(){
+        this.$store.dispatch('delayedAddCounter');
+    }
+}
+ ```
+
+비동기 코드 example2
+
+```javascript
+mutations:{
+    setData(state, fechedData){
+        state.product = fetchedData; 
+        //서버에서 받은 데이터를 product에 밀어 넣어준다.
+    }
+},
+actions:{
+    fetchProductData(context){
+        return axsios.get('https://domain.com/prodcuts/1')
+            .then(response => context.commit('setData', response);
     }
 }
 // App.vue
-this.$store.commit('modifystate',{
-    str: 'passed from payload',
-    num: 20
-});
-
-``` 
-왜 state는 직접 변경하지 않고 mutations로 변경할까?  
-여러 개의 컴포넌트에서 아래와 같이 state 값을 변경하는 경우 어느 컴포넌트에서 해당 state를 변경했는지 추적하기가 어렵다. 
-
-```javascript
-method:{
-    increaseCounter(){ this.$store.state.counter++ }
+methods:{
+    getProduct(){
+        this.$store.dispatch('fecthProductData');
+    }
 }
 ```
 
-특정 시점에 어떤 컴포넌트가 state를 접근하여 변경한 건지 확인하기 어렵기 때문  
-따라서, 뷰의 반응성을 거스르지 않게 명시적으로 상태 변화를 수행. 반응성, 디버깅, 테스팅 혜택. 
+왜 비동기 처리 로직은 actions에 선언해야 할까? 
 
-왜 mutation은 commit을 통해서 ??  
--->  
+* 언제 어느 컴포넌트에서 해당 state를 호출하고, 변경했는지 확인하기가 어려움
+> state 값의 변화를 추적하기 어렵기 때문에 mutations 속성에는 동기 처리 로직만 넣어야 한다. 
+

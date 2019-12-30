@@ -15,7 +15,11 @@ nth-of-type vs nth-child
 
 내부 컨텐츠의 가로 정렬을 text-align: center
 세로 정렬은 컨텐츠에
+
+```CSS
 position: relative;
 top:50%;
-transform: translateY(-50%);  
+transform: translateY(-50%);
+```
+  
 top 50%를 하면 기준이 끝이라서 중간보다 아래에 있어보인다. 그런데 translateY(-50%) 하면 이미지 크기의 반절만큼을 위로 올려준다. 

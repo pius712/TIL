@@ -4,6 +4,7 @@
 * Arrow Function
 * Enhanced Object Literals
 * Modules
+* Spread Operator
 
 Babel  
 babel은 es6 javascript를 그 이전에 버전으로 변환시켜주는 프로그램.(transpiling)
@@ -139,7 +140,7 @@ function f(){
 }
 ```
 
-### Arrow Function
+## Arrow Function
 
 ES5와 ES6 간단한 비교. 
 
@@ -169,7 +170,7 @@ arr.forEach((v)=>{
 });
 
 
-### enhanced Object Literals - 향상된 객체 리터럴  
+## enhanced Object Literals - 향상된 객체 리터럴  
 
 ```javascript
 var dictionary = {
@@ -210,7 +211,7 @@ components:{
 }
 ```
 
-### Modules
+## Modules
 
 * 자바스크립트 모듈 로더 라이브러리 기능을 js 언어 자체에서 지원.  
 자바에서의 클래스나 패키지 같은 개념이라고 생각하면 될 듯.  
@@ -246,4 +247,36 @@ util('hig');
 import log from 'util.js;
 console.log(log);
 log('hi');
+```
+
+## Spread Operator
+
+`...` : spread operator
+
+```javascript
+let josh = {
+  feild: 'web',
+  language: 'js',
+};
+
+// let develper = {
+//   nations: 'korea',
+//   field: josh.field,
+//   language: josh.language,
+// };
+
+let developer = {
+  nations: 'korea',
+  ...josh
+};
+
+console.log(developer);
+``` 
+
+```bash
+[object Object] {
+  feild: "web",
+  language: "js",
+  nations: "korea"
+}
 ```
