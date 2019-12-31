@@ -1,6 +1,16 @@
 # module
 
-## module system 
+* 내장 객체
+  * global 
+  * console 
+* 내장 모듈
+  * os
+  * path
+  * url
+  * querystring
+  * fs
+
+## module system이란? 
 
 ```javascript
 //var.js
@@ -209,4 +219,143 @@ querystring.parse(query)
   foo: 'bar',
   abc: ['xyz', '123']
 }
+```
+
+### util
+
+1. deprecate
+
+```javascript
+const util = require('util');
+
+const dontuseme = util.deprecate((x.,y)=>{
+  console.log(x+y);
+}, 'message');
+
+dontuseme(1,2);
+```
+
+```bash
+3
+(node:5347) DeprecationWarning: message
+```
+
+api 만들 때, 사용하는 그런 메서드인듯. 
+
+2. promisify
+
+```javascript
+const util = require('util');
+const crypto = require('cryto');
+
+const dontuseme = util.deprecate((x, y)=>{
+  console.log(x+y);
+}, 'message');
+
+dontuseme(1,2);
+
+const randomBytesPromise = util.promisify(crypto.randomBytes);
+const pbkdf2Promise = util.promisify(crypto.pbkdf2);
+
+crypto.randomBytes(64, (err,buf)=>{
+  const salt = buf.toString('base64');
+  console.log('salt', salt);
+  console.time('암호화');
+  crypto.pbkdf2('pius', salt, 651395, 64, 'sha512', (err,key)=>{
+    console.log('password', key.toString('base64'));
+    console.timeEnd('암호화');
+  });
+});
+crypto.randomBytes(64);
+
+randomBytesPromise(64)
+  .then((buf)=>{
+    const salt = buf.toString('base64');
+    console.log('salt', salt);
+    console.time('암호화');
+    return pbkdf2Promise('pius', salt, 651395, 64, 'sha512');
+  })
+  .then((key)=> {
+    console.log('password', key.toString('base64'));
+  })
+  .catch((err)=>{
+    console.error(err);
+  })
+(async ()=>{
+  const buf = await randomBytesPromise(64);
+  const salt = buf.toString('base64');
+  const key = await pbkdf2Promise('pius', salt, 651395, 64, 'sha512');
+  console.log('password', key.toString('base64'));
+  
+})();
+```
+
+### fs 모듈
+
+```javascript
+const fs = require('fs');
+fs.readFile('경로', (err,data)=>{
+  if(err){
+    throw err;
+  }else{
+    console.log(data);
+  }
+})
+```
+
+### event 모듈
+
+이벤트 리스너를 생성하고, 특정 이벤트가 발생할 경우 로직을 실행.
+
+```javascript
+const EventEmitter = require('events');
+
+const myEvent = new EventEmitter();
+
+myEvent.addListener('visit',()=>{
+    console.log('thank you for visit');
+});
+
+myEvent.on('end', ()=>{
+    console.log('get out of here');
+});
+
+myEvent.on('end',()=>{
+    console.log('fuck off');
+});
+
+myEvent.once('special', ()=>{
+    console.log('한 번 실행됨');
+});
+
+myEvent.emit('visit');
+myEvent.emit('end');
+myEvent.emit('special');
+myEvent.emit('special');
+
+myEvent.on('continue', ()=>{
+    console.log('listening...');
+});
+
+myEvent.removeAllListeners('continue');
+myEvent.emit('continue');
+
+const callback1 = ()=>{
+    console.log('callback1');
+}
+const callback2 = ()=>{
+    console.log('callback2');
+}
+myEvent.on('end1', callback1);
+myEvent.on('end1', callback2);
+myEvent.removeListener('end1', callback1);
+myEvent.emit('end1');
+```
+
+```bash
+thank you for visit
+get out of here
+fuck off
+한 번 실행됨
+callback2
 ```
