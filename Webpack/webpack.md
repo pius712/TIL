@@ -52,3 +52,35 @@ module.exports = {
 
 
 ## Entry
+
+## config
+
+* webpack --watch 
+
+```javascript
+"scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack --watch"
+  },
+```
+
+* webpack-dev-server 
+
+npm i -D webpack-dev-server
+
+```javascript
+//package.json
+"scripts": {
+    "build": "webpack --watch",
+    "dev": "webpack-dev-server --hot"
+  },
+```
+
+```javascript
+//webpack.config.js
+output:{
+        filename : 'app.js',
+        path : path.join(__dirname, '/dist'),
+        publicPath: '/dist'
+    }
+```
