@@ -61,7 +61,7 @@ import { mapGetters } from 'vuex'
 computed(){ ...mapGetters(['reversMessage'])}
 
 //stroe.js
-gettersL{
+getters:{
     reverseMessage(state){
         return state.msg.split('').revers().join('');
     }

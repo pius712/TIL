@@ -41,6 +41,7 @@ this.$store.commit('modifystate',{
 });
 
 ``` 
+
 왜 state는 직접 변경하지 않고 mutations로 변경할까?  
 여러 개의 컴포넌트에서 아래와 같이 state 값을 변경하는 경우 어느 컴포넌트에서 해당 state를 변경했는지 추적하기가 어렵다. 
 

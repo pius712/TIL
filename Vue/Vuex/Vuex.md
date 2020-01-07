@@ -81,7 +81,7 @@ eventBus.$emit('refreshData', chartData);
 
 ### VueX 컨셉 
 
-* State : 컴포넌트 간에 공유하는 데이터 `date()`
+* State : 컴포넌트 간에 공유하는 데이터 `data()`
 * View : 데이터를 표시하는 화면 `template`
 * Action : 사용자의 입력에 따라 데이터를 변경하는 `methods`  
 

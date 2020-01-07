@@ -89,4 +89,4 @@ const Counter = {
 }
 ```
 
-물론 `computed` 속성을 사용하지 않고 템플릿에서 `this.#store.state.coun`로 접근이 가능하나, 
+물론 `computed` 속성을 사용하지 않고 템플릿에서 `this.$store.state.coun`로 접근이 가능하나, 
