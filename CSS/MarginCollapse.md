@@ -61,3 +61,9 @@ https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Box_Model/Mastering_margin_col
 ```
 
 위의 경우에는 빈 `div` 태그의 `margin top`과 `margin bottom`을 구분하는 것이 없기 때문에 더 큰 margin bottom으로 합쳐진다. 
+
+## 해결책
+
+```css
+display: inline-block
+```

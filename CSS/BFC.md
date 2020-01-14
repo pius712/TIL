@@ -47,7 +47,7 @@ BCF의 개념을 잘 이해하기 위해서는 flow에 대한 이해를 가지�
 * items with position: absolute (including position: fixed which acts in the same way)
 * the root element (html)
 
-flow를 벗어난 `items`는 새로운 BFC를 만들고, 그 아이템 내부의 모든 것들은 하나의 작은 레이아웃을 통해 볼 수 있다. 
+flow를 벗어난 `items`는 새로운 BFC를 만들고, 그 아이템 내부의 모든 것들은 페이지와는 분리된 하나의 작은 레이아웃으로 볼 수 있다. 
 
 ```CSS
 p {

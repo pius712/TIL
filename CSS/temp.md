@@ -23,3 +23,21 @@ transform: translateY(-50%);
 ```
   
 top 50%를 하면 기준이 끝이라서 중간보다 아래에 있어보인다. 그런데 translateY(-50%) 하면 이미지 크기의 반절만큼을 위로 올려준다. 
+
+```css
+width: calc(100% / 6);
+```
+
+inline-block 문제점
+
+inline-block 끼리 붙어 있으면, 사이에 간격이 생기는 문제가 발생한다. 
+가로는 float으로
+세로는 vertical-align:top
+
+
+iframe
+
+white-space / gradient / opacity
+
+
+
