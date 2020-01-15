@@ -114,7 +114,46 @@ git checkout myBranch
 // 각 브랜치의 커밋을 보는 법
 git log --branches // git log --oneline --branches
 // 그래프로 보는 법
-git --branches --graph // --oneline 옵션 가능
+git log --branches --graph // --oneline 옵션 가능
+// 여기서 (--branches === --all) 
 // 브랜치 사이의 차이점 보기.
 git log master..apple //master에는 없고 apple 브랜치에는 있는 커밋
 ```
+
+### 브랜치 병합 
+
+브랜치를 병합하려면 마스터 브랜치에서 병합을 해야한다.  
+|  
+|_master  
+|_apple  
+
+```bash
+git merge apple
+``` 
+
+명령을 하게 되면 합쳐진다.  
+문제는 병합시, master 브랜치와 apple 브랜치가 같은 파일의 같은 부분을 동시에 수정했을때 생긴다. 이를 `conflict`라고 한다.  
+충돌이 발생하면 충돌이 발생한 파일에 들어가면  
+
+```bash
+<<<<<<<<<<Head
+master content 2
+=========
+apple content 2
+>>>>>>>>>apple
+```` 
+
+이런 식으로 나타나고, `Head` 의 아래 부분은 현재 브랜치에서 수정한 내용.  
+ `apple` 위의 부분은 apple 브랜치가 수정한 내용이 나타난다.  
+ <, =, > 부호는 모두 지우고, 충돌난 부분의 내용을 원하는 방향으로 수정하고 저장하면 된다. 그리고 다시 스테이지에 올리고, 커밋을 하면된다.
+
+ ```bash
+ git add .
+ git commit -m "message"
+ ```
+ 
+ 병합이 끝난 후에 사용하지 않는 브랜치는 마스터 브랜치에서 아래와 같이 실행하면 된다. 병합하지 않은 브랜치를 강제로 삭제하려면 `-D` 옵션을 붙이면 된다.
+ 
+ ```bash
+ git branch -d o2
+ ```
