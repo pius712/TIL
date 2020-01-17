@@ -12,6 +12,7 @@
 
 `element`의 크기와 위치는 컨테이닝 블록의 영향을 받는다.  
 `백분율` 값을 사용한 width, height, padding, margin 속성의 값과 절대적 위치(absolute나 fixed 등)로 설정된 요소의 오프셋 속성 값은 자신의 컨테이닝 블록으로부터 계산됩니다.
+
 ```CSS
 div{
     width : 100%;
