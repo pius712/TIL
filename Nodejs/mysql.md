@@ -69,16 +69,32 @@ mysql>DESCRIBE comments; --> 상세 정보
 ### 설치
 
 `npm i sequelize mysql2` --> 프로젝트 단위
+
+여기서 mysql2는 'This is a node.js driver for mysql.'
 `npm i -g sequelize-cli` --> 전역 설치(한번)
 
 `sequelize init`
 위 명령어를 수행시, 기본적으로 `config`, `models` 등의 폴더가 생성된다.
 
+---
+
+**note**
+
+아래의 방식이 더 선호? 되는 것 같다. 글로벌로 설치를 하고 sequelize init을 하면 package.json에 기록이 안남는다.  
+하지만 아래와 같은 방식으로 설치를 하면 package.json에 기록을 남길 수 있다.
+
+```bash
+npm i -D sequelize-cli
+npx sequelize init
+npx sequelize db:creat  // database 만드는 작업. config에 설정된 database 이름으로 생성된다.
+```
+
+---
+
 `models/index.js` 에서 sequelize 모듈 import, db 객체 생성 등을 한다.
 sequelize에서 단수형으로 모델을 만들면, table은 복수형으로 만들어진다.
 
 ```js
-const path = require('path');
 const Sequelize = require('sequelize');
 
 const env = process.env.NODE_ENV || 'development';
@@ -120,9 +136,47 @@ sequelize.sync();
 
 ### Model 정의
 
+sequelize의 모델은 `js의 객체 인스턴스`이다.
+An instance of the class represents one object from that model (which maps to one row of the table in the database).
+
+sequelize.define() : Model;
+
 ```js
 // models/user.js
-module.exports = (sequelize, DataTypes) => {};
+module.exports = (sequelize, DataTypes) => {
+  sequelize.define(
+    'users',
+    {
+      name: {
+        type: DataTypes.STRING(20),
+        allowNull: false,
+        unique: true,
+      },
+      age: {
+        type: DataTypes.INTEGER.UNSIGNED,
+        allowNull: false,
+      },
+      married: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+      },
+      comment: {
+        type: DataTypes.TEXT,
+        allowNull: true,
+      },
+      created_at: {
+        type: DataTypes.DATE,
+        allowNull: false,
+        defaultValue: sequelize.literal('now()'),
+      },
+    },
+    {
+      timestamps: false,
+      underscored: false,
+    },
+  );
+  return User;
+};
 ```
 
 ```js
