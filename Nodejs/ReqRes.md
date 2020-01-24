@@ -69,11 +69,12 @@ console.dir(req.query.shoe.type);
 
 ## Response 객체
 
-- `res.app`
-  이 속성은 해당 미들웨어를 사용하고 있는 Express application의 인스턴스를 참조한다. 참고로 `res.app === req.app`  
-  라우터 디렉토리의 라우터 파일에서는 app인스턴스가 없기 때문에, app.get()을 할 수 없다. 그렇기 때문에 그 경우에는 res.app과 같은 방식을 통해서 app 객체에 접근한다.
+### `res.app`
 
-- `res.locals`
+이 속성은 해당 미들웨어를 사용하고 있는 Express application의 인스턴스를 참조한다. 참고로 `res.app === req.app`  
+ 라우터 디렉토리의 라우터 파일에서는 app인스턴스가 없기 때문에, app.get()을 할 수 없다. 그렇기 때문에 그 경우에는 res.app과 같은 방식을 통해서 app 객체에 접근한다.
+
+### `res.locals`
 
 서버에 접속하는 request/ response 한 사이클 동안에 존재하는 reponse의 지역 변수이다. 그러한 점을 제외하고는 `app.locals`와 같은데...  
 `app.locals`는 app 인스턴스의 변수로 일종의 전역변수이고, request/ respons의 사이클과는 관계없이 항상 똑같다.  
@@ -86,3 +87,26 @@ app.use(function(req, res, next) {
   next();
 });
 ```
+
+### res.json()
+
+JSON 응답을 보낸다. 안에 json을 넣으면, json.stringify()를 호출해서 response로 보내준다.
+
+파라미터는 어떠한 JSON type이 될 수 있는데,
+The parameter can be any JSON type, including object, array, string, Boolean, number, or null, and you can also use it to convert other values to JSON.
+
+res.json(null)
+res.json({ user: 'tobi' })
+res.status(500).json({ error: 'message' })
+
+router.get('/', function(req, res, next) {
+// res.send('respond with a resource');
+User.findAll()
+.then(users => {
+res.json(users);
+})
+.catch(err => {
+console.error(err);
+next(err);
+});
+});

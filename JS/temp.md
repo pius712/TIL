@@ -128,6 +128,21 @@ getCandy();
 
 위의 경우에 getCandy는 호출해도 안 듣는데 그 이유가 원래 객체 내의 `this`가 그 객체에 바인딩 되어있는데, 분리하여 할당하는 순간, console.log(this); 를 해보면 이 `this`가 윈도우 객체를 가리키게 된다는 것을 알 수 있다.
 
+### 비구조화 할당 시, 이름 부여
+
+```js
+let obj = {
+  name: 'Some Name',
+  age: '42',
+  gender: 'coder',
+};
+let { name: foo, ...rest } = obj;
+console.log({ foo, rest }); // { foo: 'Some Name', rest: { age: 42, gender: 'coder' } }
+//
+```
+
+## rest, spread
+
 ```javascript
 var array = ['nodejs', {}, 10, true];
 var node = array[0];
@@ -136,8 +151,6 @@ var bool = array[array.length - 1];
 ```
 
 아래의 코드와 같다.
-
-## rest, spread
 
 ```javascript
 const array = ['nodejs', {}, 10, true];

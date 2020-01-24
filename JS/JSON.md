@@ -8,7 +8,7 @@
 
 `JSON.parse(text[, reviver])`
 
-JSON -> js 객체 으로 만들어 준다. 
+JSON -> js 객체 으로 만들어 준다.
 
 ```javascript
 const json = '{"result":true, "count":42}';
@@ -23,4 +23,26 @@ console.log(obj.result);
 
 ## JSON.stringify()
 
-js -> JSON 으로 만들어준다. 
+js -> JSON 으로 만들어준다.
+
+## 심화?
+
+json은 js의 object 객체만을 말하는 것이 아니다. 아래의 모든 것이 JSON이 될 수 있다.
+
+```js
+JSON = null
+    or true or false
+    or JSONNumber
+    or JSONString
+    or JSONObject
+    or JSONArray
+
+```
+
+````js
+JSON.parse('{}'); // {}
+JSON.parse('true'); // true
+JSON.parse('"foo"'); // "foo"
+JSON.parse('[1, 5, "false"]'); // [1, 5, "false"]
+JSON.parse('null'); // null
+````
