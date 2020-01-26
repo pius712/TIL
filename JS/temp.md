@@ -238,23 +238,23 @@ Users.findOne('foo')
 ```
 
 ```javascript
-const add = new Promise((resolve, reject)=>{
-    const a = 1;
-    const b = 2;
-    if(a + b > 2){
-        resolve(a + b); // 이 resolve와 reject 안에 메세지를 넣어 보낸다.
-    } else{
-        reject(a + b);
-    }
+const add = new Promise((resolve, reject) => {
+  const a = 1;
+  const b = 2;
+  if (a + b > 2) {
+    resolve(a + b); // 이 resolve와 reject 안에 메세지를 넣어 보낸다.
+  } else {
+    reject(a + b);
+  }
 });
 
 add()
-    .then((success)=>{
-        console.log(success);
-    })
-    .catch((fail)->{
-        console.log(fail);
-    });
+  .then(success => {
+    console.log(success);
+  })
+  .catch(fail => {
+    console.log(fail);
+  });
 ```
 
 cf) 프로미스를 사용할 수 있는 이유?  
