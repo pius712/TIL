@@ -193,6 +193,8 @@ FETCH_NEWS(context) {
   fetchNewsList()
     .then(res => {
       context.commit('SET_NEWS', res.data);
+      console.log('actions');
+      console.log(res);
       return res;
     })
     .catch(err => {
@@ -227,9 +229,9 @@ function fetchNewsList() {
 ```bash
 // 결과
 api call
-actions
-undefined
 result
+undefined
+actions
 {data: Array(30), status: 200, statusText: "", headers: {…}, config: {…}, …}
 ```
 
