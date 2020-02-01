@@ -9,7 +9,9 @@
 
 1. 아이디와 비밀번호를 입력
 2. 인증
-3. 서버에서 쿠키를 심어준다. 4.서버에 요청시에 http 헤더로 쿠키를 보내준다. 5.세션에서 확인
+3. 서버에서 쿠키를 심어준다.
+4. 서버에 요청시에 http 헤더로 쿠키를 보내준다.
+5. 세션에서 확인
 
 ```js
 // routes/user.js
@@ -122,7 +124,7 @@ app.get('/login', function(req, res, next) {
 });
 ```
 
-성공시, req.logint() 호출 -> req.user(session)에 저장.
+성공시, req.login() 호출 -> req.user(session)에 저장.  
 // 어떻게 저장? --> 위 session part
 
 ```js
@@ -144,6 +146,7 @@ app.post('/user/login', (req, res) => {
         return next(err);
       }
       return res.json(user);
+      // respond를 안해주면, authenticate() 함수가 실패한 것으로 인식한다. 그러므로 바깥에 하지말고 안에 하도록.
     }); // req.login ?! --> 원래 있는게 아니라 passport.initialize()을 하면 req.login/ req.logout 추가해준다.
   })(req, res, next);
 }); //authenticate(strategy, options)
