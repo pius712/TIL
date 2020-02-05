@@ -101,10 +101,10 @@ const env = process.env.NODE_ENV || 'development';
 const config = require('../config/config.json')[env];
 // config.json에 [env] 키의 value값을 cofing에 넣는다.
 const sequelize = new Sequelize(
-  config.database,
-  config.username,
-  config.password,
-  config,
+	config.database,
+	config.username,
+	config.password,
+	config,
 );
 // sequelize 인스턴스 생성
 const db = {};
@@ -144,38 +144,38 @@ sequelize.define() : Model;
 ```js
 // models/user.js
 module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define(
-    'users',
-    {
-      name: {
-        type: DataTypes.STRING(20),
-        allowNull: false,
-        unique: true,
-      },
-      age: {
-        type: DataTypes.INTEGER.UNSIGNED,
-        allowNull: false,
-      },
-      married: {
-        type: DataTypes.BOOLEAN,
-        allowNull: false,
-      },
-      comment: {
-        type: DataTypes.TEXT,
-        allowNull: true,
-      },
-      created_at: {
-        type: DataTypes.DATE,
-        allowNull: false,
-        defaultValue: sequelize.literal('now()'),
-      },
-    },
-    {
-      timestamps: false,
-      underscored: false,
-    },
-  );
-  return User;
+	const User = sequelize.define(
+		'users',
+		{
+			name: {
+				type: DataTypes.STRING(20),
+				allowNull: false,
+				unique: true,
+			},
+			age: {
+				type: DataTypes.INTEGER.UNSIGNED,
+				allowNull: false,
+			},
+			married: {
+				type: DataTypes.BOOLEAN,
+				allowNull: false,
+			},
+			comment: {
+				type: DataTypes.TEXT,
+				allowNull: true,
+			},
+			created_at: {
+				type: DataTypes.DATE,
+				allowNull: false,
+				defaultValue: sequelize.literal('now()'),
+			},
+		},
+		{
+			timestamps: false,
+			underscored: false,
+		},
+	);
+	return User;
 };
 ```
 
@@ -241,16 +241,16 @@ Sequelize.DATE
 
 ```js
 sequelize.define('users', {
-  name: {
-    type: DataTypes.STRING(20),
-    allowNull: false,
-    primaryKey: true,
-    // unique: true,
-  },
-  age: {
-    type: DataTypes.INTEGER.UNSIGNED,
-    allowNull: false,
-  },
+	name: {
+		type: DataTypes.STRING(20),
+		allowNull: false,
+		primaryKey: true,
+		// unique: true,
+	},
+	age: {
+		type: DataTypes.INTEGER.UNSIGNED,
+		allowNull: false,
+	},
 });
 ```
 
@@ -289,8 +289,9 @@ N에서 이 속성은 foreign key가 된다.
 
 하지만 sequelize에는 primary key가 없어도 관계를 설정할 수 있게 되어 있다.  
 (내 생각에는 이게 맞나라는 생각은 든다... 어쨋든 하나의 relation은 튜플들을 식별할 수 있는 키를 가져야하는데, 이 경우에는 그렇지 않기 때문이다.)
+// primary key를 설정하지 않으면 자동으로 id라는 pk를 설정해준다. 상관 없다.
 
-### pk가 있을때
+### pk가 있을때(1:N)
 
 ```js
 Team.hasMany(Player);
@@ -301,27 +302,27 @@ Player.belongsTo(Team);
 
 ```js
 Team.hasMany(Player, {
-  foreignKey: 'clubId',
+	foreignKey: 'clubId',
 });
 Player.belongsTo(Team);
 ```
 
-### 관계 없을때
+### pk 없을때
 
 - For belongsTo relationships
 
 ```js
 const Ship = sequelize.define(
-  'ship',
-  { name: DataTypes.TEXT },
-  { timestamps: false },
+	'ship',
+	{ name: DataTypes.TEXT },
+	{ timestamps: false },
 );
 const Captain = sequelize.define(
-  'captain',
-  {
-    name: { type: DataTypes.TEXT, unique: true },
-  },
-  { timestamps: false },
+	'captain',
+	{
+		name: { type: DataTypes.TEXT, unique: true },
+	},
+	{ timestamps: false },
 );
 ```
 
@@ -335,16 +336,16 @@ Ship.belongsTo(Captain, { targetKey: 'name', foreignKey: 'captainName' });
 
 ```js
 const Bar = sequelize.define(
-  'bar',
-  {
-    title: { type: DataTypes.TEXT, unique: true },
-  },
-  { timestamps: false },
+	'bar',
+	{
+		title: { type: DataTypes.TEXT, unique: true },
+	},
+	{ timestamps: false },
 );
 const Baz = sequelize.define(
-  'baz',
-  { summary: DataTypes.TEXT },
-  { timestamps: false },
+	'baz',
+	{ summary: DataTypes.TEXT },
+	{ timestamps: false },
 );
 Bar.hasMany(Baz, { sourceKey: 'title', foreignKey: 'barTitle' });
 // Baz에
@@ -386,6 +387,54 @@ mysql> describe users;
 | comment    | text             | YES  |     | NULL              |                |
 | created_at | datetime         | NO   |     | CURRENT_TIMESTAMP |                |
 +------------+------------------+------+-----+-------------------+----------------+
+```
+
+### N : M 관계
+
+```js
+//model/post
+Post.associate = db => {
+	db.Post.belongsToMany(db.Hashtag, { through: 'PostHashtag' });
+};
+//model/hashtag
+Hashtag.associate = db => {
+	db.Hashtag.belongsToMany(db.Post, { through: 'PostHashtag' });
+};
+```
+
+위와 같이 N : M 관계를 맺을 경우에, 아래와 같은 PostHashtag 모델이 생긴다.
+
+```bash
++----------------+----------------+--------+-----------+
+| createdAt      | updatedAt      | PostId | HashtagId |
++----------------+----------------+--------+-----------+
+```
+
+```js
+const hashtags = req.body.content.match(/#[^\s#]+/g);
+const newPost = await db.Post.create({
+	content: req.body.content,
+	UserId: req.user.id,
+});
+if (hashtags) {
+	// map 함수의 결과값은 배열인데 배열의 인자들이 다 promise이다.
+	// 왜냐하면 db.Hashtag.findOrCreate의 return이 Promise이기 때문.
+	const result = await Promise.all(
+		hashtags.map(tag =>
+			db.Hashtag.findOrCreate({
+				// 있으면 저장하지말고 없으면 저장.
+				where: {
+					name: tag.slice(1).toLowerCase(),
+				},
+			}),
+		),
+	);
+	// 여기서 r 은 유사배열이다... r[0]에 모델 인스턴스가 들어간다라고 생각하면 된다.
+	// 공식문서 : In this example, findOrCreate returns an array like this:
+	// 그리고 await 붙으면 promise안에 value가 result에 들어간다.
+	await newPost.addHashtags(result.map(r => r[0]));
+	// 이렇게하면 중간에 relationship에 추가 된다.
+}
 ```
 
 ## query

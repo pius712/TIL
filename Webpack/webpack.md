@@ -11,9 +11,10 @@ mkdir webpack-demo
 cd webpack-demo
 npm init -y
 npm install webpack webpack-cli --save-dev
+# or npm i -D webpack webpack-cli
 ```
 
-project
+- project 디렉토리 구조
 
 ```bash
   webpack-demo
@@ -25,17 +26,16 @@ project
     |- index.js
 ```
 
-webpack.config.js
-
 ```javascript
+// webpack.config.js
 const path = require('path');
 
 module.exports = {
-  entry: './src/index.js',
-  output: {
-    filename: 'main.js',
-    path: path.resolve(__dirname, 'dist'),
-  },
+	entry: './src/index.js',
+	output: {
+		filename: 'main.js',
+		path: path.resolve(__dirname, 'dist'),
+	},
 };
 ```
 
@@ -49,13 +49,41 @@ module.exports = {
 4. Plugin
 5. Resolve
 
-
-
 ## Entry
+
+## Output
+
+## mode
+
+아래와 같이 3가지 옵션을 넣을 수 있다.
+
+```js
+module.exports = {
+  mode = "production" || "development" ||  "none"
+}
+```
+
+## Loader
+
+```js
+module.exports = {
+  // 생략
+  module:{
+    rules:[
+      {
+       test: /\.css$/,
+       use: [
+           'style-loader',
+           'css-loader',
+      }
+    ]
+  }
+}
+```
 
 ## config
 
-* webpack --watch 
+- webpack --watch
 
 ```javascript
 "scripts": {
@@ -64,7 +92,7 @@ module.exports = {
   },
 ```
 
-* webpack-dev-server 
+- webpack-dev-server
 
 npm i -D webpack-dev-server
 
