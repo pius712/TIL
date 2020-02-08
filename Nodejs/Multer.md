@@ -8,7 +8,7 @@ onChangeImages(e) {
   const imageFormData = new FormData();
   [].forEach.call(e.target.files, f => {
     // e.target.files가 유사배열이라서, forEach를 못쓴다. forEach는 인자가 콜백함수.
-    imageFormData.append('image', f); { image: [file1, file2] }
+    imageFormData.append('image', f); //{ image: [file1, file2] }
   });
   this.$store.dispatch('posts/uploadImages', imageFormData);
 },
@@ -82,16 +82,17 @@ const upload = multer({
 });
 ```
 
+여기서 `upload.array('image')`는 req.files로 들어오는 것이 'image' array여야 한다는 뜻.
+
 ```js
-router.post('/images', isLoggedIn, upload.array('image') (req, res) => {
-  // console.log(req.files);
-  res.send('아하 ㅋㅋ');
+router.post('/images', isLoggedIn, upload.array('image'), (req, res) => {
+	// console.log(req.files);
+	res.json(req.files.map(v => v.filename));
 });
 
-upload.single //파일 하나
-upload.array  // 같은 키로 여러개
-upload.fields // 다른 키로 여러개 ?
-
+upload.single; //파일 하나
+upload.array; // 같은 키로 여러개
+upload.fields; // 다른 키로 여러개 ?
 ```
 
 알아서 storage에 저장을 해주고, req.files에 배열 형태로 파일을 저장해준다.

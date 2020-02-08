@@ -2,7 +2,7 @@
 
 ## Built-in methods
 
-### call()
+### ()
 
 `func.call([thisArg[, arg1, arg2, ...argN]])`
 
@@ -10,13 +10,13 @@
 
 ```js
 function Product(name, price) {
-  this.name = name;
-  this.price = price;
+	this.name = name;
+	this.price = price;
 }
 
 function Food(name, price) {
-  Product.call(this, name, price);
-  this.category = 'food';
+	Product.call(this, name, price);
+	this.category = 'food';
 }
 
 console.log(new Food('cheese', 5).name);
@@ -43,15 +43,15 @@ console.log(new Food('cheese', 5).name);
 
 ```javascript
 var kvArray = [
-  { key: 1, value: 10 },
-  { key: 2, value: 20 },
-  { key: 3, value: 30 },
+	{ key: 1, value: 10 },
+	{ key: 2, value: 20 },
+	{ key: 3, value: 30 },
 ];
 
 var reformattedArray = kvArray.map(function(obj) {
-  var rObj = {};
-  rObj[obj.key] = obj.value;
-  return rObj;
+	var rObj = {};
+	rObj[obj.key] = obj.value;
+	return rObj;
 });
 // reformattedArray는 [{1:10}, {2:20}, {3:30}]
 
@@ -130,8 +130,8 @@ array1.forEach(element => console.log(element));
 
 ```javascript
 const Employee = {
-  firstname: 'John',
-  lastname: 'Doe',
+	firstname: 'John',
+	lastname: 'Doe',
 };
 
 console.log(Employee.firstname);
@@ -154,18 +154,18 @@ console.log(Employee);
 
 ```javascript
 const object1 = {
-  a: 'somestring',
-  b: 42,
+	a: 'somestring',
+	b: 42,
 };
 
 for (let [key, value] of Object.entries(object1)) {
-  console.log(`${key}: ${value}`);
+	console.log(`${key}: ${value}`);
 }
 // expected output:
 // "a: somestring"
 // "b: 42"
 for (let entry of Object.entries(object1)) {
-  console.log(entry);
+	console.log(entry);
 }
 //["a: somestring"]
 //["b: 42"]
