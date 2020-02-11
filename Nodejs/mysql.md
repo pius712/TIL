@@ -440,3 +440,7 @@ if (hashtags) {
 ## query
 
 ###
+
+```bash
+npx sequelize db:create
+```
