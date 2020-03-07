@@ -190,6 +190,7 @@ name:{
   unique: true,
   charset: 'utf8',
   collate: 'utf8_general_ci',
+	paranoid: true // 삭제일 .
 }
 ```
 
