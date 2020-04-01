@@ -41,3 +41,30 @@ import { sum } from './math.js';
 
 console.log(math.sum(1, 2));
 ```
+
+## webpack
+
+### install
+
+`npm install -D webpack webpack-cli`
+
+### help
+
+`node_modules/.bin/webpack --help`
+
+### --mode
+
+`"development" "production" "none"
+
+### --entry
+
+### --output
+
+저장하는 경로
+
+`node_modules/.bin/webpack --mode development --entry ./src/app.js --output dist/main`  
+-> 이 명령어를 package.json  
+"script" :{
+"build" : "webpack"
+}
+이런 방식으로 등록하면 webpack.config.js 파일을 참조해서 실행한다.
