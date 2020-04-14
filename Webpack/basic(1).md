@@ -13,7 +13,7 @@
 ```js
 // math.js
 var math = math || {};
-(function() {
+(function () {
 	function sum(a, b) {
 		return a + b;
 	}
@@ -44,6 +44,8 @@ console.log(math.sum(1, 2));
 
 ## webpack
 
+mode, entry, output은 필수적으로 설정해줘야 한다.
+
 ### install
 
 `npm install -D webpack webpack-cli`
@@ -67,4 +69,19 @@ console.log(math.sum(1, 2));
 "script" :{
 "build" : "webpack"
 }
-이런 방식으로 등록하면 webpack.config.js 파일을 참조해서 실행한다.
+이런 방식으로 등록하면 webpack.config.js 파일을 참조해서 실행한다(번들링을 한다).
+
+```js
+// webpack.config.js
+
+module.exports = {
+	mode: 'development',
+	entry: {
+		main: './src/app.js'
+	},
+	output:{
+		path: path.resolve('./dist'),
+		filename '[name].js', // 동적으로 이름을 만들어준다.
+	}
+}
+```
