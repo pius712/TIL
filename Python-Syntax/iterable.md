@@ -1,0 +1,29 @@
+# Iterable/ Iterator
+
+## Iterable
+iter 함수를 사용할 수 있는 대상  
+`list` / `tuple` /  `str`
+```python
+ds = [1,2,3,4]
+for i in ds: 
+  print(i, end = ' ')
+1 2 3 4
+```
+
+```python
+ds = [1,2,3,4]
+ir = iter(ds) # iterator 객체 반환
+>>> next(ir) # iterator 객체에서 값을 꺼내는 함수
+1
+>>> next(ir)
+2
+>>> next(ir)
+3
+>>> next(ir)
+4
+>>> next(ir)
+예외 발생
+```
+
+## Iterator
+iter 함수가 반환하는 객체
