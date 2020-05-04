@@ -49,3 +49,8 @@ package.json 파일에 script를 통해서 ..!
 
 - 삭제하기  
   `npm unpublish 이름`
+
+## npx
+`npm i typescript`로 설치했는데,  
+굳이 `npm i -g typescript`로 글로벌 설치를 해서 명령어를 쓸 필요는 없다. 
+`npx tsc [파일명]` 이런식으로 사용할 수 있다.
