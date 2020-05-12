@@ -169,7 +169,22 @@ promise
 
 ## then()
 
-`then()` 메서드는 Promise를 리턴한다. 이 메서드의 인자는 2개의 콜백함수로 구성되는데, 첫번째는 프로미스가 성공했을 경우, 두번째는 실패했을 경우에 시행된다.
+기본 구조
+```js
+p.then(onFulfilled, onRejected);
+
+p.then(function(value) {
+  // 이행
+}, function(reason) {
+  // 거부
+});
+```
+---
+**참고**
+then 메서드에 첫번째 인자로 들어오는 함수의 파라미터는 이행 값(fulfillment value)로 프로미스 객체 안의 값이다.  
+---
+
+`then()` 메서드는 Promise를 리턴한다. 이 메서드의 인자는 2개의 콜백함수로 구성되는데, 첫번째는 프로미스가 성공했을 경우, 두번째는 실패했을 경우에 시행된다.  
 이 메서드는 Promise를 리턴한다. then() 메서드 내에서 값을 리턴하면, 아래와 같은 방식으로, Promise 객체를 반환하는데 내부에 값을 지니게 된다.  
 (1.returns a value, the promise returned by then gets resolved with the returned value as its value.
 2.doesn't return anything, the promise returned by then gets resolved with an undefined value.)
@@ -262,7 +277,7 @@ FETCH_NEWS(context) {
 콜백
 
 ```javascript
-Users.findOne('foo'(err,user)=>{
+Users.findOne('foo', (err,user)=>{
     console.log(user);
 })
 ```
@@ -288,6 +303,12 @@ Promise.all([Users.findOne(), Users.remove(), Users.update()])
 ```
 
 ## Asnyc/await
+
+```js
+const value = await expression
+```
+await expresssion의 반환값은 promise의 resolved 값으로 처리된다. 
+The resolved value of the promise is treated as the return value of the await expression.
 
 프로미스
 
