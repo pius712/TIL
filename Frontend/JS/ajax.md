@@ -8,14 +8,15 @@ var xhttp = new XMLHttpRequest();
 
 ## request
 
-### GET
+### GET / POST 
+
+- GET 
 
 ```javascript
 xhttp.open("GET", "demo_get.asp", true);
 xhttp.send();
 ```
-
-### POST 
+- POST 
 
 ```javascript
 xhttp.open("POST", "ajax_test.asp", true);

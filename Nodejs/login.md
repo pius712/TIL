@@ -60,9 +60,9 @@ app.use(passport.session());
 
 ### Session
 
-일반적인 웹 앱은, 유저의 정보를 login request에서 확인한 뒤에는 그 정보를 계속 가지고 있지 않는다. 인증이 성공하면, session을 만들고 유저의 브라우저에 저장된 쿠키를 가지고 있는다.
+일반적인 웹 앱은, 유저의 정보를 login request에서 확인한 뒤에는 그 정보를 계속 가지고 있지 않는다. 인증이 성공하면, session을 만들고 유저는 브라우저에 저장된 쿠키를 가지고 있는다.
 
-이후의 request는 유저의 개인정보가 없고, session을 확인할 수 있는 유일한 쿠키를 가지고 있다. 로그인 세션을 지원하기 위해서, passport는 유저의 인스턴스를 세션으로/세션으로 부터 serialize와 deserialize 할 수 있는 함수를 제공해준다.
+이후의 request는 유저의 개인정보가 없고, session을 확인할 수 있는 유일한 쿠키를 가지고 있다. 로그인 세션을 지원하기 위해서, passport는 유저의 인스턴스를 세션으로/세션으로부터 serialize와 deserialize 할 수 있는 함수를 제공해준다.
 
 ```js
 passport.serializeUser(function(user, done) {
