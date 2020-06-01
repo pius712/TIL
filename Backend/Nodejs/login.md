@@ -60,7 +60,7 @@ app.use(passport.session());
 
 ### Session
 
-일반적인 웹 앱은, 유저의 정보를 login request에서 확인한 뒤에는 그 정보를 계속 가지고 있지 않는다. 인증이 성공하면, session을 만들고 유저는 브라우저에 저장된 쿠키를 가지고 있는다.
+일반적인 웹 앱은, 유저의 정보를 login request에서 확인한 뒤에는 그 정보를 계속 가지고 있지 않는다. 인증이 성공하면, 서버는 session을 만들어 가지고 있고, 클라이언트(유저의 브라우저)는 쿠키를 저장해서 가지고 있는다.
 
 이후의 request는 유저의 개인정보가 없고, session을 확인할 수 있는 유일한 쿠키를 가지고 있다. 로그인 세션을 지원하기 위해서, passport는 유저의 인스턴스를 세션으로/세션으로부터 serialize와 deserialize 할 수 있는 함수를 제공해준다.
 
@@ -131,7 +131,7 @@ app.get('/login', function(req, res, next) {
 routes / user;
 app.post('/user/login', (req, res) => {
   passport.authenticate('local', (err, user, info) => {
-    // local strategy 실행 --> return done() 이게 뒤에 콜백 인자로 들어온다.
+    // local strategy(passport.local.js의 passport.use() 함수) 실행 --> return done() 이게 뒤에 콜백 인자로 들어온다.
     if (err) {
       console.error(err);
       return next(err);
