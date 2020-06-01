@@ -13,6 +13,10 @@
 4. 서버에 요청시에 http 헤더로 쿠키를 보내준다.
 5. 세션에서 확인
 
+router를 통해서 user의 data(id, password)가 들어온다.  
+ -> passport.authenticate() 함수가 실행되면, 처음의 인자로 들어오는 strategy가 실행이된다.  
+ -> strategy의 use() 함수의 콜백함수의 `return done()`의 인자가 다시 authenticate()의 콜백함수 인자로 들어온다.   
+-> authenticate()의 콜백에서 req.login() 함수를 호출한다. 
 ```js
 // routes/user.js
 
