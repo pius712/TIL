@@ -101,14 +101,14 @@ return new Promise((res, rej) => {
 const condition = true;
 const promise = new Promise((resolve, reject) =>{
     if(condition){
-        resolove('성공');
+        resolve('성공');
     }else{
         reject('실패');
     }
 }
 });
 
-promise()
+promise
     .then((message)=>{
         console.log(message);
     })
@@ -120,17 +120,17 @@ promise()
 ```javascript
 promise
     .then((message)=>{
-        return new Promise((res,rej)={
+        return new Promise((res,rej)=>{
             res(message);
         });
     })
     .then((message2)=>{  // 여기에 있는 message2의 경우에는 매개변수라서 위의 return 의 res 안의 값과 같을 필요는 없다. 그냥 전달된다는 것을 시각적으로 보여주기 위함.
-        return new Promise((res,rej)={
+        return new Promise((res,rej)=>{
             res(message2);
         });
     })
     .then((message3)=>{
-        return new Promise((res,rej)={
+        return new Promise((res,rej)=>{
             res(message3);
         });
     })
@@ -180,8 +180,9 @@ p.then(function(value) {
 });
 ```
 ---
-**참고**
-then 메서드에 첫번째 인자로 들어오는 함수의 파라미터는 이행 값(fulfillment value)로 프로미스 객체 안의 값이다.  
+**참고**  
+then 메서드에 첫번째 인자로 들어오는 함수의 파라미터는 이행 값(fulfillment value)로 프로미스 객체 안의 값이다.
+
 ---
 
 `then()` 메서드는 Promise를 리턴한다. 이 메서드의 인자는 2개의 콜백함수로 구성되는데, 첫번째는 프로미스가 성공했을 경우, 두번째는 실패했을 경우에 시행된다.  
