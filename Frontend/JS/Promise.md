@@ -353,3 +353,27 @@ func();
 
 프로미스의 경우에는 `completed?`가 먼저 실행된다. 하지만 `async/await`에서는 이 순서를 바꿀 수 있다.  
 그리고 에러 발생 예외처리를 해주어야 한다.
+
+async 함수는 Promise 객체를 반환한다. Promise 객체 내부의 값은 async 함수에서 return한 값이 들어간다. 
+
+```js
+function resolveAfter2Seconds() {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve('resolved');
+    }, 2000);
+  });
+}
+async function asyncCall() {
+  console.log('calling');
+  const result = await resolveAfter2Seconds();
+  console.log(result);
+  return "??";
+  // expected output: 'resolved'
+}
+
+const temp = asyncCall();
+console.log('temp', temp);
+```
+
+위와 같이 실행을 하고 temp를 log로 찍으면 "??" 값을 가진 Promise를 반환한다. 
