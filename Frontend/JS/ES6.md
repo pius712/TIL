@@ -4,6 +4,7 @@
 * Arrow Function
 * Enhanced Object Literals
 * Modules
+* destructuring
 * Spread Operator
 
 Babel  
@@ -249,6 +250,28 @@ console.log(log);
 log('hi');
 ```
 
+## destructuring
+
+```js
+const me = {
+    name: 'pius',
+    age: 28,
+    nationality: 'korea',
+    hobby: {
+        music : 'jazz',
+        movie: 'romance'
+    }
+}
+// const name = me.name;
+// const age = me.age;
+// const nation = me.nationality;
+// const music = me.hobby.music;
+// const movie = me.hobby.movie;
+const { name, age, nationality: nation, hobby: {music, movie}} = me;
+console.log(name, age, nation, music, movie);
+
+
+```
 ## Spread Operator
 
 `...` : spread operator

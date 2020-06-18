@@ -53,6 +53,7 @@ var myObj = {
     func2();
   },
 };
+func1();
 ```
 
 ```bash
