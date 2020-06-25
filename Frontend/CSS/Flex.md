@@ -2,7 +2,22 @@
 
 flex는 그리드 시스템의 기반이 된다. 
 
+- Flex container
+  - flex-direction 
+  - flex-wrap 
+  - justify-content 
+  - align-items 
+  - align-content
+- Flex item
+  - flex 
+  - flex-grow 
+  - flex-shrink 
+  - flex-basis 
+  - order
 ## 기본 구조
+
+- Container
+- Item
 
 Container와 item으로 구성이 된다. Container는 `flex box`이고 items는 그 flex box의 `elements`가 된다. 
 
@@ -25,7 +40,7 @@ Container와 item으로 구성이 된다. Container는 `flex box`이고 items는
 }
 ```
 
-![flex-model](../img/flex-model.png)
+![flex-model](./image/flex-model.png)
 
 ## flex의 방향
 
@@ -63,9 +78,17 @@ Container와 item으로 구성이 된다. Container는 `flex box`이고 items는
 </div>
 ```
 
-![flex-overflow2](../img/flex-overflow2.png)
+![flex-overflow2](../../img/flex-overflow2.png)
 
-## flex-wrap
+  - flex-direction 
+  - flex-wrap 
+  - justify-content 
+  - align-items 
+  - align-content
+
+### flex-direction 
+
+### flex-wrap
 
 기본적으로 container는 `flex-wrap:nowrap`이다.  
 이를 `flex-wrap:wrap` 을 하게 되면 overflow하지 않고, 다음 라인으로 가게된다. 
@@ -75,8 +98,13 @@ ___
 기본적으로 container 내부의 item은 container의 크기가 줄어들면 `shrink`하게 되지만, 더이상 줄어들 수 없을 때 `overflow`를 하게된다. 
 ___
 
+### justify-content
+### align-items
+### align-content
 
-## item size
+
+## Flex Item
+
 
 ### flex-basis 
 
@@ -87,6 +115,9 @@ ___
     flex-basis:200px
 }
 ```
+**note**  
+px, %와 같은 단위를 명시해야 한다.
+
 
 ### flex-grow  
 
@@ -112,7 +143,8 @@ shorthand: `flex: flex-grow flex-shrink flex-basis`
 ### flex-shrink
 
 위의 grow property와는 반대로 줄어들때를 컨트롤 해주는 property이다. 이 속성이 정수 값으로 정해지면, item은 flex-basis 값 보다 작게 줄어들 수 있다.  
-아래와 같은 아이템이 5개가 있으면, 기본적으로 200px씩 부여 받은 다음에 grow를 해서 container를 채우게 된다. 그리고 브라우저의 화면을 줄이게 되면 줄어들게 되고, flex-basis 이하로 줄어들 수 있다. (사실 이해가 안가는게, shrink 속성이 없어도, overflow하지 않는 선에서 줄어든다.)  
+아래와 같은 아이템이 5개가 있으면, 기본적으로 200px씩 부여 받은 다음에 grow를 해서 container를 채우게 된다. 그리고 브라우저의 화면을 줄이게 되면 줄어들게 되고, flex-basis 이하로 줄어들 수 있다.   
+(사실 이해가 안가는게, shrink 속성이 없어도, overflow하지 않는 선에서 줄어든다.) -> flex-shrink 속성으로 인해서 container가 item 크기보다 작아져도 overflow 없이 줄어든다.   
 
 아마도 이 속성은, 줄어들 때의 비율을 말하는 것 같다. 아래에서 flex-basis를 400px로 조정하면 5개의 아이템 모두가 400px를 못채워서 사이즈를 줄이게 되는데, 이때 줄어드는 사이즈의 비율이 `flex-shrik` 속성에 의해서 줄어든다. 
 

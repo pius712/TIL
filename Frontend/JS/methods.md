@@ -40,6 +40,13 @@ console.log(new Food('cheese', 5).name);
 
 `arr.map(callback(currentValue[, index[, array]])[, thisArg])`
 
+```js
+var numbers = [1, 4, 9];
+var roots = numbers.map(Math.sqrt);
+// roots는 [1, 2, 3]
+// numbers는 그대로 [1, 4, 9]
+```
+
 ```javascript
 var kvArray = [
 	{ key: 1, value: 10 },
