@@ -34,7 +34,7 @@
 }
 ```
 
-![problem](../img/floatprob.png)
+![problem](./image/floatprob.png)
 
 위의 결과물과 같이 `container`의 `content` 영역의 사이즈가 0이다. 
 이는 아래의 내부 `div` 태그가 `float` 속성을 가지고 있기 때문이다. 
@@ -70,7 +70,7 @@ p {
 </div>
 ```
 
-![result](../img/flow.png);
+![result](./image/flow.png);
 
 `float` 뒤에 따라오는 `<p>`의 색이 아래에 깔리는 것을 볼 수 있다. `<p>` 태그는 여전히 `normal flow`를 따라서 화면에 비춰지고 있다. 그렇기 때문에 `floated item` 과의 간격을 만들고 싶다면 그 floated item에 마진 값을 주어야 한다. 플로우 내에 있는 컨텐츠에 무슨 속성을 추가하더라도 그러한 간격을 가지게 할 수 없다. 
 --> 즉, 지금 위의 `p` 태그 같은 경우에는 normalr flow를 가지고 그냥 진행이 되고 있는데, `float` 속성을 가진 하나의 `div`태그가 새로운 BCF를 가지고 끼어든 꼴이 되는 격이다. 

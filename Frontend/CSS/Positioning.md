@@ -19,7 +19,7 @@
 }
 ```
 
-![결과](../img/position.png)
+![결과](./image/position.png)
 
 ```CSS
 .header-search fieldset {
@@ -29,7 +29,7 @@
 ```
 
 아래와 같이 부모 태그에 relative를 추가해주면 
-![결과](../img/relative.png)
+![결과](./image/relative.png)
 
 * relative 
 원래 위치에서 움직인다. 
@@ -56,7 +56,7 @@ float 속성을 가진 엘리먼트는 페이지의 일반적인 흐름(`normal 
     </div>
 </div>
 ```
-![float](../img/cssfloat.png)
+![float](./image/cssfloat.png)
 
 
 ```html
@@ -69,7 +69,7 @@ float 속성을 가진 엘리먼트는 페이지의 일반적인 흐름(`normal 
     </div>
 </div>
 ```
-![float2](../img/cssfloat2.png)
+![float2](./image/cssfloat2.png)
 
 ### clear
 엘리먼트가 선행 floating 엘리먼트 다음으로 쌓이는지 아니면 float 속성을 해제하고 그 아래로 내려가는지 지정할 수 있다. 

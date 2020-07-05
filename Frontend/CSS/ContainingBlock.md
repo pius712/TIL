@@ -6,7 +6,7 @@
 2. 안쪽 여백(패딩) 영역
 3. 테두리 영역
 4. 바깥 여백(마진) 영역
-![contain](../img/contain.png)
+![contain](./image/contain.png)
 
 ## 컨테이닝 블록의 효과
 

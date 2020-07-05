@@ -32,7 +32,7 @@
 
 margin-left: auto 속성으로 자식 요소를 오른쪽에 배치  
 
-요소의 margin을 설정하는 속성에 속성값으로 auto를 적용하면 flexbox에서 flex item을 쉽게 배치할 수 있다. 예를 들어 margin: auto 속성을 적용하면 flex item의 바깥 여백이 자동으로 확장되어 flex item이 flex container의 가운데에 위치하게 된다.
+요소의 margin을 설정하는 속성에 속성값으로 auto를 적용하면 flexbox에서 flex item을 쉽게 배치할 수 있다. 예를 들어 margin: auto 속성을 적용하면 flex item의 바깥 여백(margin)이 자동으로 확장되어 flex item이 flex container의 가운데에 위치하게 된다.
 
 flex item을 수평으로 배치할 때 다음과 같이 'auto' 속성값을 사용할 수 있다.
 
