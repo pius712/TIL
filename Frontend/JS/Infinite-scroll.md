@@ -4,6 +4,10 @@
 
 이를 구현하는 방법.
 
+- window.scrollY
+- element.clientHeight
+- element.scorllHeight
+- 인피니트 스크롤 구현
 
 ## window.scrollY
 
@@ -48,3 +52,7 @@ element의 padding까지 크기를 측정하고, border, margin이나 수평 스
 ### `document.documentElement.scrollHeight`
 
 전체 document의 스크롤을 포함한 가장 위에서부터 가장 아래까지의 height를 반환하게 된다. 
+
+## 인피니트 스크롤 구현
+
+`scrollY + clientHeight = scrollHeight`
