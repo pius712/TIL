@@ -95,18 +95,21 @@ JSON 응답을 보낸다. 안에 json을 넣으면, json.stringify()를 호출�
 파라미터는 어떠한 JSON type이 될 수 있는데,
 The parameter can be any JSON type, including object, array, string, Boolean, number, or null, and you can also use it to convert other values to JSON.
 
+```js
 res.json(null)
 res.json({ user: 'tobi' })
 res.status(500).json({ error: 'message' })
 
 router.get('/', function(req, res, next) {
 // res.send('respond with a resource');
-User.findAll()
-.then(users => {
-res.json(users);
-})
-.catch(err => {
-console.error(err);
-next(err);
+  User.findAll()
+    .then(users => {
+      res.json(users);
+    })
+    .catch(err => {
+      console.error(err);
+      next(err);
+  });
 });
-});
+
+```

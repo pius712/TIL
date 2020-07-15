@@ -68,6 +68,10 @@ app.use(passport.session());
 
 이후의 request는 유저의 개인정보가 없고, session을 확인할 수 있는 유일한 쿠키를 가지고 있다. 로그인 세션을 지원하기 위해서, passport는 유저의 인스턴스를 세션으로/세션으로부터 serialize와 deserialize 할 수 있는 함수를 제공해준다.
 
+즉, 아래의 serialize는 session을 만들기 위해, user를 serialize 하는 것이고,
+deserialize는 session으로부터, id를 가져와서 deserialize 해주는 것이다. 
+자동적으로 쿠키랑 묶어서 세션에 저장한다. 
+
 ```js
 passport.serializeUser(function(user, done) {
   //req.login의 user 인자가 여기로 들어온다.
@@ -81,7 +85,7 @@ passport.deserializeUser(function(id, done) {
       },
     })
       .then(user => {
-        done(null, user);
+        done(null, user); // req.user 에 정보를 넣어준다. 
       })
       .catch(err => {
         console.error(err);
@@ -92,7 +96,8 @@ passport.deserializeUser(function(id, done) {
 ```
 
 위의 코드는 user.id 만 session으로 serialize 되었다.  
-(deserializeUser 부분)이후의 request를 받을 때, 이 id는 유저를 찾을 때 사용된다. 그리고 데이터 베이스를 통해 회원의 정보를 찾은 후, `done()`을 호출하여, req.user에 user의 정보를 저장한다. (+ req.authenticated() === true 가 된다.)
+(deserializeUser 부분)이후의 request를 받을 때, 이 id는 유저를 찾을 때 사용된다.  
+그리고 데이터 베이스를 통해 회원의 정보를 찾은 후, `done()`을 호출하여, req.user에 user의 정보를 저장한다. (+ req.authenticated() === true 가 된다.)
 
 The serialization and deserialization logic is supplied by the application, allowing the application to choose an appropriate database and/or object mapper, without imposition by the authentication layer.
 
@@ -113,6 +118,7 @@ app.post('/login',
     // `req.user` contains the authenticated user.
     res.redirect('/users/' + req.user.username);
   });
+
 2. route handler에서 사용.
 
 app.get('/login', function(req, res, next) {
@@ -120,22 +126,27 @@ app.get('/login', function(req, res, next) {
     if (err) { return next(err); }
     if (!user) { return res.redirect('/login'); }
     req.logIn(user, function(err) {
-    if (err) { return next(err); }
-    return res.redirect('/users/' + user.username);
+      if (err) { return next(err); }
+      return res.redirect('/users/' + user.username);
     });
 })(req, res, next);
 // 이렇게 쓰는 이유에 대해서는 음.. passport.authenticate()가 미들웨어로 쓰였다. 즉, 저 함수 호출의 리턴 값이 함수라는 뜻. 그렇기 때문에, 다른 미들웨어 내에서 "호출" 하기 위해서는 ()를 붙여서 호출해야하는데, 미들웨어의 인자는 req,res,next 이므로 (req,res,next)를 붙여서 호출한다.
 });
 ```
 
-성공시, req.login() 호출 -> req.user(session)에 저장.  
+성공시, req.login() 호출
+-> 알아서 브라우저로 cookie를 보내준다. 
+-> req.user(session)에 저장.  
 // 어떻게 저장? --> 위 session part
 
 ```js
 routes / user;
 app.post('/user/login', (req, res) => {
   passport.authenticate('local', (err, user, info) => {
-    // local strategy(passport.local.js의 passport.use() 함수) 실행 --> return done() 이게 뒤에 콜백 인자로 들어온다.
+    // 첫번째 인자를 보고, strategy를 찾아서 먼저 실행해준다. 
+    // 위의 경우 local strategy(passport/local.js)의 passport.use() 함수) 실행 
+    //--> return done() 이게 뒤에 콜백 인자로 들어온다.
+    // done(error, 성공, 실패);
     if (err) {
       console.error(err);
       return next(err);
@@ -170,7 +181,7 @@ app.post('/user/login', (req, res) => {
 ```
 
 // form data가 post 될 때, 그 input의 reference는 name attribute로 한다.
-// form이 method=get 일때는 body는 비어있고 url에 포함되고, post일때는 url에는 비어있고, bodt에 key=value 형식으로 들어있다.
+// form이 method=get 일때는 body는 비어있고 url에 포함되고, post일때는 url에는 비어있고, body에 key=value 형식으로 들어있다.
 
 ```js
 //passport.local.js
