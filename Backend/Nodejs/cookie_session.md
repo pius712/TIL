@@ -22,7 +22,7 @@
 
 - domain
 
-## Session
+## epxress-session 
 
 쿠키를 통해서만 인증을 구현하면 브라우저에 그대로 노출되기 때문에, 위험하다.
 

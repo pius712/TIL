@@ -74,7 +74,7 @@ deserialize는 session으로부터, id를 가져와서 deserialize 해주는 것
 
 ```js
 passport.serializeUser(function(user, done) {
-  //req.login의 user 인자가 여기로 들어온다.
+  //req.login()의 user 인자가 여기로 들어온다.
   done(null, user.id);
 });
 
