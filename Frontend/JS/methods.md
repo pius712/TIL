@@ -2,11 +2,12 @@
 
 ## Built-in methods
 
-### ()
+### call()
 
 `func.call([thisArg[, arg1, arg2, ...argN]])`
 
 `thisArg`: The value to use as this when calling func.
+`[, arg1, arg2, ...argN]` 원래 함수(`func`)의 인자.
 
 ```js
 function Product() {
@@ -22,6 +23,16 @@ console.log(new Food('cheese', 5).name);
 // expected output: "cheese"
 ```
 
+이를 활용하는 방법.
+e.target.files는 유사 배열으로, 배열의 forEach 메소드를 쓸 수 없다.  
+따라서 빈 배열을 만들고 그 배열의 forEach함수 call 메서드를 통해서 사용하는 것이다.
+2번째 인자는, 원래 forEach 함수는 콜백함수를 인자로 받기 때문에, 콜백함수가 들어간 것이다.
+ 
+```js
+[].forEach.call(e.target.files, (file)=>{
+			
+		})
+```
 ## Array
 
 - splice()
