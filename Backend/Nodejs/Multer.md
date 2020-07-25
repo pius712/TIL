@@ -16,9 +16,17 @@ Multer는 request 객체에 body 객체와 file, files 객체를 추가해준다
 즉, middle ware로 넘겨주는 `upload`가 front에서 올려주는 이미지 파일에 대해서 로직을 실행해주고,  
 위의 객체에 해당 정보들을 넘겨준다. `(req,res,next)=>{}` 내에서 처리된 정보들을 다룰 수 있다.  
 
+---
+**note**
+`new FormData()`를 통해 보낼때, 문자열을 만들어서 보내주면 req.body로 가고,  
+file을 넣어서 보내주면 `req.file` `req.files`로 간다. 
+
+---
+
 기본적인 예시:
 
-form태그에 `enctype="multipart/form-data"` 설정을 꼭 해야한다. 
+form태그에 `enctype="multipart/form-data"` 설정을 꼭 해야한다.  
+new FormData()로 보내는 경우에는 위 enctype 설정을 한것과 같다. 
 
 ```html
 <form action="/profile" method="post" enctype="multipart/form-data">
@@ -60,9 +68,9 @@ Take special note of the enctype="multipart/form-data" and name="uploaded_file" 
 ```html
 <form action="/stats" enctype="multipart/form-data" method="post">
   <div class="form-group">
-    <input type="file" class="form-control-file" name="uploaded_file">
-    <input type="text" class="form-control" placeholder="Number of speakers" name="nspeakers">
-    <input type="submit" value="Get me the stats!" class="btn btn-default">            
+    <input type="file" name="uploaded_file">
+    <input type="text" placeholder="Number of speakers" name="nspeakers">
+    <input type="submit" value="Get me the stats!">            
   </div>
 </form>
 ```

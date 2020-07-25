@@ -17,15 +17,7 @@ router를 통해서 user의 data(id, password)가 들어온다.
  -> passport.authenticate() 함수가 실행되면, 처음의 인자로 들어오는 strategy가 실행이된다.  
  -> strategy의 use() 함수의 콜백함수의 `return done()`의 인자가 다시 authenticate()의 콜백함수 인자로 들어온다.   
 -> authenticate()의 콜백에서 req.login() 함수를 호출한다. 
-```js
-// routes/user.js
 
-// email이랑 password 검사
-await User.findOne();
-// 세션에 저장
-user[cookie] = 유저정보;
-//프론트에 쿠키 내려보내주기
-```
 
 패키지
 
@@ -37,6 +29,11 @@ user[cookie] = 유저정보;
 ## passport
 
 ### 설정(app.js)
+
+passport를 초기화 하기위해서는 `passport.initialize()` 미들웨어가 필요하다.  
+그리고 persistent login session을 사용하면, `pasport.session()` 미들웨어도 필요하다. 
+
+그리고 session을 사용하기 위해서는 `express.session()` 을 `passport.session()` 이전에 사용해야한다. 
 
 ```js
 //app.js
@@ -107,6 +104,8 @@ The serialization and deserialization logic is supplied by the application, allo
 첫번째 인자로는 strategy가 오게 된다.
 두번째 인자에는 객체를 통해 options 설정할 수 있고, custom callback 함수를 만들 수도 있다.  
 메서드 자체만으로 미들웨어로 사용이 가능하나, req,res 객체를 이용하기 위해서 route handler 미들웨어 함수 내에서 실행하기도 한다.
+
+authentication이 성공하면, session이 만들어지고, 세션이 유저 브라우저의 cookie set으로 유지된다.
 
 ```js
 1. 미들웨어로 사용
