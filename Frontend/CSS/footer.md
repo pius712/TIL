@@ -37,3 +37,17 @@ html, body{
   bottom: 0;
 }
 ```
+
+## 최종 수정
+
+위의 방식이 일부 layout에서 html height가 100%를 못채우는 경우가 있었다. 아래와 같이 하면 된다.
+
+```css
+html {
+   height: 100%;
+}
+
+body {
+   min-height: 100%;
+}
+```
