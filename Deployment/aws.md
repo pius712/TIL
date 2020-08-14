@@ -29,6 +29,10 @@ $ sudo apt-get install -y build-essential
 ```
 ### NVM
 
+nvm으로 설치하는거 자꾸 에러나서..   
+[nodejs공식문서](https://github.com/nodesource/distributions/blob/master/README.md)
+이거대로하자
+
 ---
 **note**  
 nvm 패키지를 깔때 주의할점.  
@@ -123,7 +127,17 @@ x.y.z. 에는 버전이름이 들어간다.
 이때, sudo mysql -u root
 `ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'test';` 를 해서 비밀번호를 변경해주면 된다. (비밀번호를 설정해줬음에도 mysql에 mysql database에 유저 정보에는 비밀번호가 비어있다.)
 
- 
+
+바로 실행하면 에러 생기는데...
+npx sequelize db:create
+
+아래 에러..? 머지
+warning connect.session() memorystore is not designed for a production environment as it will leak
+
+80번 포트 에러  
+Error: listen EACCES: permission denied 0.0.0.0:80  
+1023번 아래의 포트는 root가 아닌 사용자가 못 연다. 
+
 ## 리눅스 명령어...
 
 `wget` 인터넷 파일 다운로드 받는 명령어  
