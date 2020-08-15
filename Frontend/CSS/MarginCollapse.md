@@ -37,7 +37,7 @@ https://developer.mozilla.org/ko/docs/Web/CSS/CSS_Box_Model/Mastering_margin_col
   margin-top:50px;
 }
 ```
-![collapse2](../img/collapse2.png)
+![collapse2](./image/collapse2.png)
 
 
 ## Empty blocks

@@ -208,7 +208,7 @@ content 영역만을 크기로 지정.
 형제 태그끼리 height가 다르면 정렬이 달라진다. 이럴때는 형제 태그의 스타일에 
 vertical-align을 바꿔주면 된다. (vertical-align은 inline, inline-block 일때만 적용이 된다.)
 
-![정렬 이전](../img/beforAlign.png)
+![정렬 이전](./image/beforAlign.png)
 
 ```CSS
     .header-search a{
@@ -222,7 +222,7 @@ vertical-align을 바꿔주면 된다. (vertical-align은 inline, inline-block �
 
 ```
 
-![정렬 이전](../img/afterAlign.png)
+![정렬 이전](./image/afterAlign.png)
 
 
 ### Position
@@ -237,7 +237,7 @@ vertical-align을 바꿔주면 된다. (vertical-align은 inline, inline-block �
     right: 0;
 }
 ```
-![결과](../img/position.png)
+![결과](./image/position.png)
 
 ```CSS
 .header-search fieldset {
@@ -247,7 +247,7 @@ vertical-align을 바꿔주면 된다. (vertical-align은 inline, inline-block �
 ```
 
 아래와 같이 부모 태그에 relative를 추가해주면 
-![결과](../img/relative.png)
+![결과](./image/relative.png)
 
 * relative 
 원래 위치에서 움직인다. 

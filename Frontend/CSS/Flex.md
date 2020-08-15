@@ -65,7 +65,7 @@ Container와 item으로 구성이 된다. Container는 `flex box`이고 items는
 * The flex-basis:auto.
 * The flex-wrap:nowrap.  
 --> container를 채우고도 item이 남으면 overflow를 해버린다. 아래와 같이, 스크롤이 생기면서 튀어나간다. (이 경우에는 container가 body안의 block)
-![flex-overflow](../img/flex-overflow.png)
+![flex-overflow](./image/flex-overflow.png)
 
 만약에 아래와 같이 div.outer(overflow: scroll)가 있을 경우에는 아래와 같다. `overflow:scroll`을 안하면 그냥 overflow 해버린다.
 
@@ -78,7 +78,7 @@ Container와 item으로 구성이 된다. Container는 `flex box`이고 items는
 </div>
 ```
 
-![flex-overflow2](../../img/flex-overflow2.png)
+![flex-overflow2](./image/flex-overflow2.png)
 
   - flex-direction 
   - flex-wrap 

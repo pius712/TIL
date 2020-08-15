@@ -37,7 +37,7 @@ HTML 엘리먼트는 모두 Display 속성을 갖는다. 대부분은 `inline` o
 }
 ```
 
-![width](../img/scroll.png)
+![width](./image/scroll.png)
 
 ```CSS
 .center {
@@ -47,7 +47,7 @@ HTML 엘리먼트는 모두 Display 속성을 갖는다. 대부분은 `inline` o
 </style>
 ```
 
-![max-width](../img/maxwidth.png)
+![max-width](./image/maxwidth.png)
 위는 width 아래는 max-width
 
 ## box layout 
